@@ -3,7 +3,7 @@
     <h2>Pick List</h2>
     <div style="float: right; margin-right: 0.7em">
       <q-btn
-        v-on:click="getData()"
+        v-on:click="getPicks()"
         label="Refresh"
         type="submit"
         color="primary"
@@ -20,7 +20,7 @@
         <q-table
           @row-click="editPick"
           title="Picks"
-          :rows="picks"
+          :rows="store.picks"
           :columns="columns"
           row-key="id"
         ></q-table>
@@ -28,24 +28,40 @@
     </div>
   </q-page>
 </template>
-
+<!-- ******************* SCRIPT BEGINS HERE ******************** -->
+<!-- ******************* SCRIPT BEGINS HERE ******************** -->
+<!-- ******************* SCRIPT BEGINS HERE ******************** -->
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
-import { ref, onMounted } from 'vue';
+import { ref, reactive, onMounted, computed } from 'vue';
 import Pick from 'src/domain/domainInterfaces';
 
 import axios from 'axios';
 import { QTableProps } from 'quasar';
 import { route } from 'quasar/wrappers';
 
+
+import { usePickStore } from '../../stores/pick-store';
+
+const store = usePickStore();
+
+
 const router = useRouter();
 
-const picks = ref<Pick>([]);
-
+//const picks = ref<Pick>([]);
+const picks = reactive(store.picks);
 onMounted(() => {
+ // alert('getting data now');
   getData();
+  //store.fetchPicks;
 });
 
+
+function getPicks() {
+  let result = store.getPickData;
+ // alert('Row count in cache = ' + result.length);
+  return result;
+}
 function addPick() {
   router.push({path: '/editPick?param=add'} )
 }
@@ -55,9 +71,9 @@ async function getData() {
   await axios
     .get('http://localhost:3000/picks')
     .then((response) => {
-      picks.value = response.data;
+      store.picks = response.data;
 
-      //alert('data = ' + picks.value);
+      alert('Rows found = ' + store.picks.length);
     })
     .catch((e) => {
       alert('error: ' + e);
@@ -78,6 +94,13 @@ const columns: QTableProps['columns'] = [
     sortable: true,
   },
   {
+    name: 'player',
+    align: 'left',
+    label: 'Player',
+    field: 'player',
+    sortable: true,
+  },
+  {
     name: 'selectionRound',
     align: 'left',
     label: 'Round',
@@ -92,17 +115,17 @@ const columns: QTableProps['columns'] = [
     sortable: true,
   },
   {
-    name: 'selectionFrom',
+    name: 'selectionPickFrom',
     align: 'left',
     label: 'Pick From',
-    field: 'selectionFrom',
+    field: 'selectionPickFrom',
     sortable: true,
   },
   {
-    name: 'selectionSentTo',
+    name: 'selectionPickTo',
     align: 'left',
     label: 'Pick Sent To',
-    field: 'selectionSentTo',
+    field: 'selectionPickTo',
     sortable: true,
   },
 ];

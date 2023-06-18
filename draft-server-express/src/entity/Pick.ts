@@ -9,6 +9,9 @@ export class Pick {
   teamId: number;
 
   @Column()
+  playerId: number;
+
+  @Column()
   selectionRound: number;
 
   @Column()
@@ -18,10 +21,10 @@ export class Pick {
   selectionYear: string;
 
   @Column()
-  selectionFrom: string;
+  selectionPickFrom: string;
 
   @Column()
-  selectionSentTo: string;
+  selectionPickTo: string;
 
   @Column()
   combineScore: number;

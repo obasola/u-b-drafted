@@ -17,6 +17,7 @@ const Pick_1 = require("./entity/Pick");
 const CombineScore_1 = require("./entity/CombineScore");
 const dotenv = require("dotenv");
 const express = require("express");
+const cors = require("cors");
 data_source_1.AppDataSource.initialize()
     .then(() => __awaiter(void 0, void 0, void 0, function* () {
     console.log("Loading teams from the database...");
@@ -29,9 +30,13 @@ data_source_1.AppDataSource.initialize()
 dotenv.config();
 // port is now available to the Node.js runtime
 // as if it were an environment variable
-const port = process.env.APP_SERVER_PORT;
+//const port = process.env.APP_SERVER_PORT;
+const port = 3000;
 // create and setup express app
 const app = express();
+app.use(cors({
+    origins: "http://localhost:9000",
+}));
 // define a route handler for the default home page
 app.get("/", (req, res) => {
     // render the index template

@@ -24,6 +24,10 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
+], Pick.prototype, "playerId", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
 ], Pick.prototype, "selectionRound", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
@@ -36,11 +40,11 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Pick.prototype, "selectionFrom", void 0);
+], Pick.prototype, "selectionPickFrom", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Pick.prototype, "selectionSentTo", void 0);
+], Pick.prototype, "selectionPickTo", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)

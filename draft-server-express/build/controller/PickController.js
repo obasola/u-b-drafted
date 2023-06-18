@@ -18,7 +18,11 @@ class PickController {
     }
     all(request, response, next) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.pickRepository.find();
+            const pickList = this.pickRepository.find();
+            let i = 0;
+            while (i < (yield pickList).length) {
+                console.log("picklist = " + pickList[i]);
+            }
         });
     }
     one(request, response, next) {
@@ -35,11 +39,17 @@ class PickController {
     }
     save(request, response, next) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { firstName, lastName, age } = request.body;
+            const { id, teamId, playerId, selectionRound, selectionNumber, selectionYear, selectionPickFrom, selectionPickTo, combineScore, } = request.body;
             const pick = Object.assign(new Pick_1.Pick(), {
-                firstName,
-                lastName,
-                age,
+                id,
+                teamId,
+                playerId,
+                selectionRound,
+                selectionNumber,
+                selectionYear,
+                selectionPickFrom,
+                selectionPickTo,
+                combineScore,
             });
             return this.pickRepository.save(pick);
         });

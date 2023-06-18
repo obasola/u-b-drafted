@@ -19,10 +19,16 @@
           style="width: 250px"
         />
         <q-input
-          v-model="pickInstance.selectionRound"
+          v-model="pickInstance.player"
           type="text"
           label="Round"
         />
+
+        <q-input
+            v-model="pickInstance.selectionRound"
+            type="text"
+            label="Round"
+          />
 
         <q-input
           v-model="pickInstance.selectionNumber"
@@ -31,13 +37,13 @@
         />
 
         <q-input
-          v-model="pickInstance.selectionFrom"
+          v-model="pickInstance.selectionPickFrom"
           type="text"
           label="Pick Received From"
         />
 
         <q-input
-          v-model="pickInstance.selectionSentTo"
+          v-model="pickInstance.selectionPickTo"
           type="text"
           label="Pick Sent To"
         />
@@ -72,7 +78,6 @@ import axios from 'axios';
 import Pick from 'src/domain/domainInterfaces';
 
 import { reactive, ref } from 'vue';
-import { Team } from '../../../../draft-server-lb4/src/models/team.model';
 import PickDataService from 'src/services/PickDataService';
 
 const teamOptionsList = [
@@ -112,11 +117,13 @@ const picks = ref<Pick>([]);
 const pickInstance = reactive({
   id: 0,
   teamId: 0,
+  playerId: 0,
+  player: '',
   selectionRound: 0,
   selectionNumber: 0,
   selectionYear: '',
-  selectionFrom: '',
-  selectionSentTo: '',
+  selectionPickFrom: '',
+  selectionPickTo: '',
   combineScore: 0,
 });
 
@@ -134,7 +141,7 @@ async function getData() {
   await axios
     .get('http://localhost:3000/picks')
     .then((response) => {
-      let records: Array<Team> = response.data;
+      let records: Array<Pick> = response.data;
       return records;
     })
     .catch((e) => {
