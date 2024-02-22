@@ -1,1 +1,20 @@
 
+
+  {
+    "compilerOptions": {
+        "module": "system",
+        "lib": ["es2016", "esnext.asynciterable"],
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "outFile": "./dist/index.js",
+        "sourceMap": true
+    },
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
+    ]
+}

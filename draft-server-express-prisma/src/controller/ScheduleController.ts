@@ -1,6 +1,6 @@
 import { AppDataSource } from "../data-source";
 import { NextFunction, Request, Response } from "express";
-import { Schedule } from "../entity/Schedule";
+import { Schedule } from "../models/Schedule";
 
 export class ScheduleController {
     private scheduleRepository = AppDataSource.getRepository(Schedule);

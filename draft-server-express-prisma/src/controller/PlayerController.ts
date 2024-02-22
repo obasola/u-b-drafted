@@ -1,6 +1,6 @@
 import { AppDataSource } from "../data-source";
 import { NextFunction, Request, Response } from "express";
-import { Player } from "../entity/Player";
+import { Player } from "../models/Player";
 
 export class PlayerController {
     private playerRepository = AppDataSource.getRepository(Player);

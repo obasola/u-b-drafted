@@ -1,6 +1,6 @@
 import { AppDataSource } from "../data-source";
 import { NextFunction, Request, Response } from "express";
-import { Pick } from "../entity/Pick";
+import { Pick } from "../models/Pick";
 
 export class PickController {
   private pickRepository = AppDataSource.getRepository(Pick);

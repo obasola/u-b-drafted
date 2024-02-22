@@ -1,6 +1,6 @@
 import { AppDataSource } from "../data-source";
 import { NextFunction, Request, Response } from "express";
-import { Team } from "../entity/Team";
+import { Team } from "../models/Team";
 
 export class TeamController {
     private teamRepository = AppDataSource.getRepository(Team);

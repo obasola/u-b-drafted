@@ -1,18 +1,20 @@
-import { AppDataSource } from "../data-source";
+import { CombineScore } from './../entity/CombineScore';
+
 import { NextFunction, Request, Response } from "express";
-import { CombineScore } from "../entity/CombineScore";
+import { CombineScore } from "../models/CombineScore";
+import { PrismaClient } from "@prisma/client";
 
 export class CombineScoreController {
-    private combinescoreRepository = AppDataSource.getRepository(CombineScore);
+    private prisma = new PrismaClient();
 
     async all(request: Request, response: Response, next: NextFunction) {
-        return this.combinescoreRepository.find();
+        return this.prisma.CombineScore.
     }
 
     async one(request: Request, response: Response, next: NextFunction) {
         const id = parseInt(request.params.id);
 
-        const combinescore = await this.combinescoreRepository.findOne({
+        const combinescore = await this.prisma.CombineScore.findOne({
             where: { id },
         });
 
@@ -32,7 +34,7 @@ export class CombineScoreController {
             verticalLeap, playerId, broadJump  ), {
         });
 
-        return this.combinescoreRepository.save(combinescore);
+        return this.prisma.CombineScore.save(combinescore);
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {

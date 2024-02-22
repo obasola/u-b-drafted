@@ -1,11 +1,11 @@
 import { AppDataSource } from "./data-source";
 
 import { Request, Response } from "express";
-import { Team } from "./entity/Team";
-import { Schedule } from "./entity/Schedule";
-import { Player } from "./entity/Player";
-import { Pick } from "./entity/Pick";
-import { CombineScore } from "./entity/CombineScore";
+import { Team } from "./models/Team";
+import { Schedule } from "./models/Schedule";
+import { Player } from "./models/Player";
+import { Pick } from "./models/Pick";
+import { CombineScore } from "./models/CombineScore";
 
 const dotenv = require("dotenv");
 const express = require("express");
