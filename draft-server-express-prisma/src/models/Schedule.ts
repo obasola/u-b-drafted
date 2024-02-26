@@ -8,11 +8,11 @@ export class Schedule {
   gameCity: string;
   gameStateProvince: string;
   gameCountry: string;
-  gameLocation: string;
-  opponentConference: string;
-  opponentDivision: string;
-  winLostFlag: string;
-  homeOrAway: string;
+  gameLocation: string = "";
+  opponentConference: string = "";
+  opponentDivision: string = "";
+  winLostFlag: string = "";
+  homeOrAway: string = "";
 
   constructor(teamID: number, opponentId: number, scheduleWeek: number, gameDate: Date, gameCity: string,
     gameStateProvince: string, gameCountry: string ) {

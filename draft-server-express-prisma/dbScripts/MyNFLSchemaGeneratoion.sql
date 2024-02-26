@@ -17,6 +17,23 @@ CREATE SCHEMA IF NOT EXISTS `MyNFL` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb
 USE `MyNFL` ;
 
 -- -----------------------------------------------------
+-- Table `MyNFL`.`Auth_Person`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `MyNFL`.`Person` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `userName` VARCHAR(30) NOT NULL,
+  `emailAddress` VARCHAR(65) NULL DEFAULT NULL,
+  `password` VARCHAR(25) NULL DEFAULT NULL,
+  `firstName` VARCHAR(35) NULL DEFAULT NULL,
+  `lastName` VARCHAR(35) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 1
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
 -- Table `MyNFL`.`Team`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyNFL`.`Team` (
