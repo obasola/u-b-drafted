@@ -1,4 +1,4 @@
-// src/modules/teamscore/controller.ts
+// src/modules/teams/controller.ts
 import { Request, Response } from 'express';
 import { TeamRepository } from './repository';
 import { Team } from './entity';
@@ -16,7 +16,7 @@ export class TeamController {
     }
   }
 
-  async readById(req: Request, res: Response) {
+  async readById(req: Request, res: Response) :Promise<void> {
     const entity = await this.dbRepository.readOne(req, res);
 
     if (entity != null) {
@@ -27,6 +27,8 @@ export class TeamController {
   }
 
   async readMany(req: Request, res: Response) {
+    console.log("In TeamController::readMany()");
+
     const entity  = await this.dbRepository.readMany(req, res);
 
     if (entity != null) {

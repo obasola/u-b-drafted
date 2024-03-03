@@ -1,11 +1,12 @@
 // src/modules/user/repository.ts
 import { PrismaClient } from '@prisma/client';
 import { Request, Response } from 'express';
+import { Team } from './entity';
 
 export class TeamRepository {
   constructor(private prisma: PrismaClient) {}
 
-  async create(req:Request, res:Response) {
+  async create(req:Request, res:Response) :Promise<void>{
         try {
           const entity = await this.prisma.team.create({
             data: {
@@ -21,24 +22,24 @@ export class TeamRepository {
         }
   }
   
-  async readMany(req: Request, res: Response)  {
+  async readMany(req: Request, res: Response) :Promise<any> {
     return this.prisma.team.findMany();
   }
 
-  async readOne(req: Request, res: Response){
+  async readOne(req: Request, res: Response) :Promise<void> {
     const id = parseInt(req.params.id, 10);
     const entity = await this.findOneById(id,res);
     res.json(entity);
+
   }
   
-  async findOneById(id: number, res: Response){
+  async findOneById(id: number, res: Response):Promise<void>{
     const entity = await this.prisma.team.findUnique({
         where: {
             id: Number(id),
         }
     })
     res.json(entity);
-    return entity;
   }
 
   async update(req: Request, res: Response) {
