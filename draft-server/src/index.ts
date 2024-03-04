@@ -21,6 +21,7 @@ app.use(express.json());
 
 app.use(cors());
 app.use(express.urlencoded({extended: true}));
+console.log("Registering endpoints now...");
 
 app.get("/", (req: Request, res: Response) => {
     res.send("Hello world");

@@ -16,6 +16,16 @@ teamRouter.get("/teams", function (request: Request, response: Response) {
   }
 });
 // GET list of all teams
+teamRouter.put("/team/:id", function (request: Request, response: Response) {
+  try{
+    modifyData(request, response);
+  }catch(error: any) {
+    return response.status(500)
+                   .json("Error updating team data: "+error.message);
+  }
+});
+
+// GET list of all teams
 teamRouter.get("/team/names", function (request: Request, response: Response) {
   try{
     getManyNames(response);
@@ -24,6 +34,8 @@ teamRouter.get("/team/names", function (request: Request, response: Response) {
                    .json("Error reading list of Team names: "+error.message);
   }
 });
+
+// ******************  Called Functions *****************
 async function getManyNames(res: Response) {  
   const teamNames = await teamService.findManyNames();
   res.status(200).json(teamNames);
@@ -34,5 +46,14 @@ async function getManyTeams(res: Response) {
     res.status(200).json(teamNames);
   }catch(error) {
     console.log("Failed to findMany (teams): "+ error);
+  }
+}
+
+async function modifyData(req: Request, res: Response) {
+  try{
+    const result = await teamService.modifyTeamData(req, res);
+    console.log("call results: "+result);
+  }catch(error) {
+    console.log("Error on update of Team data: "+error);
   }
 }

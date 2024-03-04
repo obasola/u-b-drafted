@@ -1,6 +1,7 @@
 
 import { DatabaseService } from "../../utils/db.server";
-
+import { TeamRepository } from "./repository";
+import { Request, Response } from "express";
 type Team = {
   id: number;
   name: string;
@@ -10,24 +11,26 @@ type Team = {
 export class TeamService {
   
   private service: DatabaseService;
+  private repo:TeamRepository = new TeamRepository();
+
   constructor() {
     this.service = new DatabaseService();
   }
 
   async findManyNames(): Promise<Team[]> {
-    const listTeamNames = this.service.getDbHandle().team.findMany({
-      select: {
-        id: true,
-        name:true,
-      }
-    });
+    const listTeamNames = this.repo.findManyNames();
     console.log("Names found: "+ (await listTeamNames).length);
     return listTeamNames;
   }
 
   async findMany(): Promise<Team[]> {
-    const rows = this.service.getDbHandle().team.findMany();
+    const rows = this.repo.readMany();
     console.log("Rows found: "+ (await rows).length);
     return rows;
+  }
+
+  async modifyTeamData(req: Request, res: Response) : Promise<void> {
+    const entity = this.repo.update(req, res);
+    return entity;
   }
 }

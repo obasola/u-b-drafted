@@ -1,14 +1,24 @@
 // src/modules/user/repository.ts
-import { PrismaClient } from '@prisma/client';
+import { DatabaseService } from "../../utils/db.server";
 import { Request, Response } from 'express';
 import { Team } from './entity';
 
+type TeamTYpe = {
+  id: number;
+  name: string;
+  
+}
+
 export class TeamRepository {
-  constructor(private prisma: PrismaClient) {}
+
+  private prisma: DatabaseService;
+  constructor() {
+    this.prisma = new DatabaseService();
+  }
 
   async create(req:Request, res:Response) :Promise<void>{
         try {
-          const entity = await this.prisma.team.create({
+          const entity = await this.prisma.getDbHandle().team.create({
             data: {
                     name: req.body.name,
                     city: req.body.city,
@@ -22,10 +32,19 @@ export class TeamRepository {
         }
   }
   
-  async readMany(req: Request, res: Response) :Promise<any> {
-    return this.prisma.team.findMany();
+  async readMany() :Promise<any> {
+    return this.prisma.getDbHandle().team.findMany();
   }
-
+  async findManyNames(): Promise<any[]> {
+    const listTeamNames = this.prisma.getDbHandle().team.findMany({
+      select: {
+        id: true,
+        name:true,
+      }
+    });
+    console.log("Names found: "+ (await listTeamNames).length);
+    return listTeamNames;
+  }
   async readOne(req: Request, res: Response) :Promise<void> {
     const id = parseInt(req.params.id, 10);
     const entity = await this.findOneById(id,res);
@@ -34,7 +53,7 @@ export class TeamRepository {
   }
   
   async findOneById(id: number, res: Response):Promise<void>{
-    const entity = await this.prisma.team.findUnique({
+    const entity = await this.prisma.getDbHandle().team.findUnique({
         where: {
             id: Number(id),
         }
@@ -54,7 +73,7 @@ export class TeamRepository {
         } = req.body;
 
    
-    const combScore = await this.prisma.team.update({
+    const entity = await this.prisma.getDbHandle().team.update({
       where: { id: Number(id) },
         data: {
           name,               
@@ -63,12 +82,12 @@ export class TeamRepository {
           conference
         },
       });
-      res.json(combScore);
+      res.json(entity);
   }
 
   async delete(req: Request) {
     const id = req.params;
-    await this.prisma.team.delete({
+    await this.prisma.getDbHandle().team.delete({
         where: {
             id: Number(id),
         },

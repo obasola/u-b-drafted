@@ -29,7 +29,7 @@ export class TeamController {
   async readMany(req: Request, res: Response) {
     console.log("In TeamController::readMany()");
 
-    const entity  = await this.dbRepository.readMany(req, res);
+    const entity  = await this.dbRepository.readMany();
 
     if (entity != null) {
       res.json(entity);
