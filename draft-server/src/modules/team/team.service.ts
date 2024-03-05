@@ -33,8 +33,10 @@ export class TeamService {
   }
 
   async readOne(req: Request, res: Response): Promise<any> {
-    let id = parseInt(req.params.id, 0);
-    const entity = await this.repo.findOneById(id, res);
+    let id = parseInt(req.params.id, 10);
+    console.log("Query Id: "+id);
+    const entity = await this.repo.findOne(id, res);
+    console.log("Found result of: "+entity);
     return entity;
   }
   async update(req: Request, res: Response) : Promise<void> {

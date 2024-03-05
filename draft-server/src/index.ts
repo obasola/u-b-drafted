@@ -28,6 +28,7 @@ app.get("/", (req: Request, res: Response) => {
 })
 app.get("/teams/", teamRouter);
 app.get("/team/names", teamRouter);
+app.get("/team/:id", teamRouter);
 app.listen(PORT, () => {
     console.log(`Server started successfully on port: ${PORT}`)
 });

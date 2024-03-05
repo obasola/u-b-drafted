@@ -1,7 +1,6 @@
 // src/modules/user/repository.ts
 import { DatabaseService } from "../../utils/db.server";
 import { Request, Response } from 'express';
-import { Team } from './entity';
 
 type TeamTYpe = {
   id: number;
@@ -45,20 +44,14 @@ export class TeamRepository {
     console.log("Names found: "+ (await listTeamNames).length);
     return listTeamNames;
   }
-  async readOne(req: Request, res: Response) :Promise<void> {
-    const id = parseInt(req.params.id, 10);
-    const entity = await this.findOneById(id,res);
-    res.json(entity);
 
-  }
-  
-  async findOneById(id: number, res: Response):Promise<void>{
+  async findOne(id: number, res: Response):Promise<any>{
     const entity = await this.prisma.getDbHandle().team.findUnique({
         where: {
-            id: Number(id),
+            id,
         }
     })
-    res.json(entity);
+    return entity;
   }
 
   async update(req: Request, res: Response) {

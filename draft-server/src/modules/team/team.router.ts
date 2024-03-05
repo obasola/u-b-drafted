@@ -28,7 +28,18 @@ teamRouter.get("/teams", function (request: Request, response: Response) {
 // Read list of all teams
 teamRouter.get("/team/names", function (request: Request, response: Response) {
   try{
+    console.log("Listing teams by name");
     getManyNames(response);
+  }catch(error: any) {
+    return response.status(500)
+                   .json("Error reading list of Team names: "+error.message);
+  }
+});
+// Read Team by ID
+teamRouter.get("/team/:id", function (request: Request, response: Response) {
+  try{
+    console.log("2. Looking up team by id");
+    getUnique(request, response);
   }catch(error: any) {
     return response.status(500)
                    .json("Error reading list of Team names: "+error.message);
@@ -80,7 +91,19 @@ async function getManyTeams(res: Response) {
   }
 }
 async function getUnique(req: Request, res: Response) {
-  return await teamService.readOne(req,res);
+  try{
+    const entity = await teamService.readOne(req,res);
+    if(entity) {
+      console.log("Got result back: "+entity);
+      return res.status(200).json(entity);
+    }else{
+      return res.status(404).json("Could not find Team by Id: "+req.params.id);
+    }
+    
+  }catch(error: any) {
+    console.log("Houston, we have a problem...");
+    return res.status(500).json(error.message);
+  }
 }
 async function modifyData(req: Request, res: Response) {
   try{
