@@ -39,11 +39,13 @@ teamRouter.get("/team/names", function (request: Request, response: Response) {
 async function getManyNames(res: Response) {  
   const teamNames = await teamService.findManyNames();
   res.status(200).json(teamNames);
+  console.log("Nbr team names found: "+teamNames.length);
 }
 async function getManyTeams(res: Response) {  
   try{
-    const teamNames = await teamService.findMany();
-    res.status(200).json(teamNames);
+    const teams = await teamService.findMany();
+    res.status(200).json(teams);
+    console.log("Nbr teams found: "+teams.length);
   }catch(error) {
     console.log("Failed to findMany (teams): "+ error);
   }

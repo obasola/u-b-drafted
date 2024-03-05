@@ -19,13 +19,13 @@ export class TeamService {
 
   async findManyNames(): Promise<Team[]> {
     const listTeamNames = this.repo.findManyNames();
-    console.log("Names found: "+ (await listTeamNames).length);
+    console.log("Names found using repository call: "+ (await listTeamNames).length);
     return listTeamNames;
   }
 
   async findMany(): Promise<Team[]> {
     const rows = this.repo.readMany();
-    console.log("Rows found: "+ (await rows).length);
+    console.log("Rows found using repository call: "+ (await rows).length);
     return rows;
   }
 

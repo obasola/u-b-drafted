@@ -1,13 +1,16 @@
 // src/modules/user/repository.ts
-import { PrismaClient } from '@prisma/client';
 import { Request, Response } from 'express';
+import { DatabaseService } from '../../utils/db.server';
 
 export class PersonRepository {
-  constructor(private prisma: PrismaClient) {}
+  private prisma: DatabaseService;
+  constructor() {
+    this.prisma = new DatabaseService();
+  }
 
   async create(req:Request, res:Response) {
         try {
-          const entity = await this.prisma.person.create({
+          const entity = await this.prisma.getDbHandle().person.create({
             data: {
               userName: req.body.userName,
               emailAddress: req.body.emailAddress,
@@ -23,7 +26,7 @@ export class PersonRepository {
   }
   
   async readMany()  {
-    return this.prisma.person.findMany();
+    return this.prisma.getDbHandle().person.findMany();
   }
 
   async readOne(req: Request, res: Response){
@@ -33,7 +36,7 @@ export class PersonRepository {
   }
   
   async findOneById(id: number, res: Response){
-    const entity = await this.prisma.person.findUnique({
+    const entity = await this.prisma.getDbHandle().person.findUnique({
         where: {
             id: Number(id),
         }
@@ -55,7 +58,7 @@ export class PersonRepository {
       } = req.body;
 
    
-    const combScore = await this.prisma.person.update({
+    const combScore = await this.prisma.getDbHandle().person.update({
       where: { id: Number(id) },
         data: {
           userName,
@@ -69,7 +72,7 @@ export class PersonRepository {
 
   async delete(req: Request) {
     const id = req.params;
-    await this.prisma.person.delete({
+    await this.prisma.getDbHandle().person.delete({
         where: {
             id: Number(id),
         },
