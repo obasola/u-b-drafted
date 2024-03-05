@@ -1,6 +1,5 @@
 import express from "express";
 import type { Request, Response } from "express";
-import { body, validationResult } from "express-validator";
 import {TeamService} from "./team.service";
 
 const teamService = new TeamService();
@@ -45,22 +44,13 @@ teamRouter.get("/team/:id", function (request: Request, response: Response) {
                    .json("Error reading list of Team names: "+error.message);
   }
 });
-// Read unique Team
+// Update a Team record
 teamRouter.put("/team/:id", function (request: Request, response: Response) {
   try{
     modifyData(request, response);
   }catch(error: any) {
     return response.status(500)
                    .json("Error updating team data: "+error.message);
-  }
-});
-// Update a Team record
-teamRouter.put("/team/update", function (request: Request, response: Response) {
-  try{
-    modifyData(request, response);
-  }catch(error: any) {
-    return response.status(500)
-                   .json("Error updating Team: "+error.message);
   }
 });
 // Delete a Team record

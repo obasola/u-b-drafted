@@ -29,19 +29,12 @@ export class PersonRepository {
     return this.prisma.getDbHandle().person.findMany();
   }
 
-  async readOne(req: Request, res: Response){
-    const id = parseInt(req.params.id, 10);
-    const entity = await this.findOneById(id,res);
-    res.json(entity);
-  }
-  
-  async findOneById(id: number, res: Response){
+  async readOne(id: number, res: Response){
     const entity = await this.prisma.getDbHandle().person.findUnique({
         where: {
-            id: Number(id),
+            id,
         }
     })
-    res.json(entity);
     return entity;
   }
 

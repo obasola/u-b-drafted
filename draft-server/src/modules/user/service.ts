@@ -17,7 +17,7 @@ export class PersonService {
 
   async readOne(req: Request, res: Response): Promise<any> {
     let id = parseInt(req.params.id, 0);
-    const entity = await this.dbRepository.findOneById(id, res);
+    const entity = await this.dbRepository.readOne(id, res);
     return entity;
   }
   async update(req: Request, res: Response): Promise<void> {
