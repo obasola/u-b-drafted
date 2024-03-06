@@ -54,7 +54,7 @@ teamRouter.put("/team/:id", function (request: Request, response: Response) {
   }
 });
 // Delete a Team record
-teamRouter.delete("/team/del", function (request: Request, response: Response) {
+teamRouter.delete("/team/:id", function (request: Request, response: Response) {
   try{
     discardData(request, response);
   }catch(error: any) {
