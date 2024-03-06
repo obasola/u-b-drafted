@@ -1,10 +1,12 @@
-// src/modules/pick/repository.ts
-import { Request, Response } from "express";
-import { PrismaClient } from '@prisma/client';
+import { Request, Response } from 'express';
+import { DatabaseService } from '../../utils/db.server';
 
 
 export class PickRepository {
-  constructor(private prisma: PrismaClient) {}
+  private prisma: DatabaseService;
+  constructor() {
+    this.prisma = new DatabaseService();
+  }
 
   async create(req:Request, res:Response) {
         try {
@@ -32,17 +34,11 @@ export class PickRepository {
 
   async readOne(req: Request, res: Response){
     const id = parseInt(req.params.id, 10);
-    const entity = await this.findOneById(id,res);
-    res.json(entity);
-  }
-  
-  async findOneById(id: number, res: Response){
     const entity = await this.prisma.pick.findUnique({
         where: {
             id: Number(id),
         }
     })
-    res.json(entity);
     return entity;
   }
 
@@ -61,7 +57,7 @@ export class PickRepository {
             selectionYear,selectionPickFrom, selectionPickTo,
             combineScore,Team_id,Player_id},
       });
-      res.json(pick);
+      return pick;
   }
 
   async delete(req: Request) {

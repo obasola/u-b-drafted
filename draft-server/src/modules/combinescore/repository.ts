@@ -1,13 +1,16 @@
 // src/modules/user/repository.ts
 import { PrismaClient } from '@prisma/client';
 import { Request, Response } from 'express';
+import { DatabaseService } from '../../utils/db.server';
 
 export class CombineRepository {
-  constructor(private prisma: PrismaClient) {}
-
+  private prisma: DatabaseService;
+  constructor() {
+    this.prisma = new DatabaseService();
+  }
   async create(req:Request, res:Response) {
         try {
-          const newCombScoreRecord = await this.prisma.combine_Score.create({
+          const newCombScoreRecord = await this.prisma.getDbHandle().combine_Score.create({
             data: {
                     fortyTime: req.body.fortyTime,
                     tenYardSplit: req.body.tenYardSplit,
@@ -25,7 +28,7 @@ export class CombineRepository {
   }
   
   async readMany(res: Response)  {
-    const entity = this.prisma.combine_Score.findMany();
+    const entity = this.prisma.getDbHandle().combine_Score.findMany();
     res.json(entity);
   }
 
@@ -36,7 +39,7 @@ export class CombineRepository {
   }
   
   async findOneById(id: number, res: Response){
-    const entity = await this.prisma.combine_Score.findUnique({
+    const entity = await this.prisma.getDbHandle().combine_Score.findUnique({
         where: {
             id: Number(id),
         }
@@ -58,7 +61,7 @@ export class CombineRepository {
       broadJump} = req.body;
 
    
-    const combScore = await this.prisma.combine_Score.update({
+    const combScore = await this.prisma.getDbHandle().combine_Score.update({
       where: { id: Number(id) },
         data: {fortyTime,
           tenYardSplit,
@@ -73,7 +76,7 @@ export class CombineRepository {
 
   async delete(req: Request) {
     const id = req.params;
-    await this.prisma.combine_Score.delete({
+    await this.prisma.getDbHandle().combine_Score.delete({
         where: {
             id: Number(id),
         },
