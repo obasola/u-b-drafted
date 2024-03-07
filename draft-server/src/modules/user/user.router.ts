@@ -1,6 +1,6 @@
 import express from "express";
 import type { Request, Response } from "express";
-import {PersonService} from "./service";
+import {PersonService} from "./user.service";
 
 const personService = new PersonService();
 export const personRouter = express.Router();

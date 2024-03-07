@@ -29,7 +29,8 @@ export class PersonRepository {
     return this.prisma.getDbHandle().person.findMany();
   }
 
-  async readOne(id: number, res: Response){
+  async readOne(req: Request): Promise<any>{
+    let id = parseInt(req.params.id, 10);
     const entity = await this.prisma.getDbHandle().person.findUnique({
         where: {
             id,

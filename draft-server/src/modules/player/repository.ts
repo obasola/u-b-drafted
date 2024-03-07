@@ -1,13 +1,14 @@
-// src/modules/user/repository.ts
-import { PrismaClient } from '@prisma/client';
 import { Request, Response } from 'express';
+import { DatabaseService } from '../../utils/db.server';
 
 export class PlayerRepository {
-  constructor(private prisma: PrismaClient) {}
-
+  private prisma: DatabaseService;
+  constructor() {
+    this.prisma = new DatabaseService();
+  }
   async create(req:Request, res:Response) {
         try {
-          const entity = await this.prisma.player.create({
+          const entity = await this.prisma.getDbHandle().player.create({
             data: {
                     firstName: req.body.firstName,
                     lastName: req.body.lastName,
@@ -25,29 +26,24 @@ export class PlayerRepository {
                     year_entered_league: req.body.year_entered_league,
                 },
             });
-          res.status(200).json(entity);
+          res.status(200);
+          return entity;
         } catch (e) {
           res.status(500).json({ error: e });
         }
   }
   
   async readMany()  {
-    return this.prisma.player.findMany();
-  }
-
-  async readOne(req: Request, res: Response){
-    const id = parseInt(req.params.id, 10);
-    const entity = await this.findOneById(id,res);
-    res.json(entity);
+    return this.prisma.getDbHandle().player.findMany();
   }
   
-  async findOneById(id: number, res: Response){
-    const entity = await this.prisma.player.findUnique({
+  async readOne(req: Request){
+    let id = req.params.id;
+    const entity = await this.prisma.getDbHandle().player.findUnique({
         where: {
             id: Number(id),
         }
     })
-    res.json(entity);
     return entity;
   }
 
@@ -73,7 +69,7 @@ export class PlayerRepository {
         } = req.body;
 
    
-    const combScore = await this.prisma.player.update({
+    const combScore = await this.prisma.getDbHandle().player.update({
       where: { id: Number(id) },
         data: { 
           firstName,
@@ -92,12 +88,12 @@ export class PlayerRepository {
           year_entered_league,
         },
       });
-      res.json(combScore);
+      return combScore;
   }
 
   async delete(req: Request) {
     const id = req.params;
-    await this.prisma.player.delete({
+    await this.prisma.getDbHandle().player.delete({
         where: {
             id: Number(id),
         },

@@ -26,12 +26,12 @@ export class PickService {
     } else {
       res.status(404).json({ error: 'Person score update failed' });
     }
+    return entity;
   }
   async delete(req: Request, res: Response): Promise<void> {
-    const id = parseInt(req.params.id, 10);
+  
     await this.dbRepository.delete(req);
-
-    const entity = this.dbRepository.readOne(id, res);
+    const entity = this.dbRepository.readOne(req, res);
     if (entity != null) {
       res.status(404).json({ error: 'Person score delete failed' });
     }else{

@@ -17,7 +17,7 @@ export class PersonService {
 
   async readOne(req: Request, res: Response): Promise<any> {
     let id = parseInt(req.params.id, 0);
-    const entity = await this.dbRepository.readOne(id, res);
+    const entity = await this.dbRepository.readOne(req);
     return entity;
   }
   async update(req: Request, res: Response): Promise<void> {
@@ -30,10 +30,9 @@ export class PersonService {
     }
   }
   async delete(req: Request, res: Response): Promise<void> {
-    const id = parseInt(req.params.id, 10);
     await this.dbRepository.delete(req);
 
-    const entity = this.dbRepository.findOneById(id, res);
+    const entity = this.dbRepository.readOne(req);
     if (entity != null) {
       res.status(404).json({ error: 'Person score delete failed' });
     }

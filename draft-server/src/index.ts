@@ -3,7 +3,7 @@ import express, {Request, Response} from "express";
 import {PrismaClient} from "@prisma/client";
 import { scheduleRouter } from "./modules/schedule/schedule.router";
 import { teamRouter } from "./modules/team/team.router";
-import { combineRouter } from "./modules/combinescore/combine.router";}
+import { combineRouter } from "./modules/combinescore/combine.router";
 
 import cors from "cors";
 

@@ -1,6 +1,6 @@
 import express from "express";
 import type { Request, Response } from "express";
-import {ScheduleService} from "./service";
+import {ScheduleService} from "./schedule.service";
 
 const scheduleService = new ScheduleService();
 export const scheduleRouter = express.Router();

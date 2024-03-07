@@ -10,7 +10,7 @@ export class PickRepository {
 
   async create(req:Request, res:Response) {
         try {
-          const newPickRecord = await this.prisma.pick.create({
+          const newPickRecord = await this.prisma.getDbHandle().pick.create({
             data: {
                     selectionRound: req.body.selectionRound,
                     selectionNumber: req.body.selectionNumber,
@@ -29,12 +29,12 @@ export class PickRepository {
   }
   
   async readMany()  {
-    return this.prisma.pick.findMany();
+    return this.prisma.getDbHandle().pick.findMany();
   }
 
   async readOne(req: Request, res: Response){
     const id = parseInt(req.params.id, 10);
-    const entity = await this.prisma.pick.findUnique({
+    const entity = await this.prisma.getDbHandle().pick.findUnique({
         where: {
             id: Number(id),
         }
@@ -51,7 +51,7 @@ export class PickRepository {
         combineScore,Team_id,Player_id} = req.body;
 
    
-    const pick = await this.prisma.pick.update({
+    const pick = await this.prisma.getDbHandle().pick.update({
       where: { id: Number(id) },
         data: {selectionRound,selectionNumber,
             selectionYear,selectionPickFrom, selectionPickTo,
@@ -62,7 +62,7 @@ export class PickRepository {
 
   async delete(req: Request) {
     const id = req.params;
-    await this.prisma.pick.delete({
+    await this.prisma.getDbHandle().pick.delete({
         where: {
             id: Number(id),
         },

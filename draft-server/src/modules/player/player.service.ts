@@ -1,22 +1,20 @@
-// src/modules/combinescore/controller.ts
-import { Request, Response } from 'express';
-import { CombineRepository } from './repository';
-import { CombineScore } from './entity';
-
-export class CombineService {
-  private dbRepository: CombineRepository;
+import { PlayerRepository } from "./repository";
+import {Request, Response} from "express";
+export class PlayerService {
+  private dbRepository: PlayerRepository;
   constructor() {
-    this.dbRepository = new CombineRepository();
+    this.dbRepository = new PlayerRepository();
   }
   async create(req: Request, res: Response) : Promise<void> {
     this.dbRepository.create(req,res);
   }
   async readMany(): Promise<any[]> {
-    return this.dbRepository.readMany();
+    const rows = this.dbRepository.readMany();
+    console.log("Rows found using repository call: "+ (await rows).length);
+    return rows;
   }
   async readOne(req: Request, res: Response): Promise<any> {
-    let id = parseInt(req.params.id, 0);
-    const entity = await this.dbRepository.readOne(req, res);
+    const entity = await this.dbRepository.readOne(req);
     return entity;
   }
   async update(req: Request, res: Response): Promise<any> {
@@ -28,12 +26,12 @@ export class CombineService {
     } else {
       res.status(404).json({ error: 'Person score update failed' });
     }
+    return null;
   }
   async delete(req: Request, res: Response): Promise<void> {
-    const id = parseInt(req.params.id, 10);
+  
     await this.dbRepository.delete(req);
-
-    const entity = this.dbRepository.readOne(req, res);
+    const entity = this.dbRepository.readOne(req);
     if (entity != null) {
       res.status(404).json({ error: 'Person score delete failed' });
     }else{

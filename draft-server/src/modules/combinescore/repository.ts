@@ -1,5 +1,3 @@
-// src/modules/user/repository.ts
-import { PrismaClient } from '@prisma/client';
 import { Request, Response } from 'express';
 import { DatabaseService } from '../../utils/db.server';
 
@@ -27,9 +25,8 @@ export class CombineRepository {
         }
   }
   
-  async readMany(res: Response)  {
-    const entity = this.prisma.getDbHandle().combine_Score.findMany();
-    res.json(entity);
+  async readMany()  {
+    return this.prisma.getDbHandle().combine_Score.findMany();
   }
 
   async readOne(req: Request, res: Response){
