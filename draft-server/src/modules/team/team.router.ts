@@ -7,7 +7,7 @@ export const teamRouter = express.Router();
 
 
 // Create a Team record
-teamRouter.post("/team/new", function (request: Request, response: Response) {
+teamRouter.post("/team", function (request: Request, response: Response) {
   try{
     addData(request, response);
   }catch(error: any) {
@@ -64,6 +64,8 @@ teamRouter.delete("/team/:id", function (request: Request, response: Response) {
 });
 // ******************  Called Functions *****************
 async function addData(req: Request, res: Response) {
+  console.log("In router, checking content of Request");
+  console.log("name: "+req.body.name+", conf: "+req.body.conference);
   await teamService.create(req,res);
 }
 async function getManyNames(res: Response) {  

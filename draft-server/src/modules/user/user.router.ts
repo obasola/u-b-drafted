@@ -7,7 +7,7 @@ export const personRouter = express.Router();
 
 
 // Create a Person record
-personRouter.post("/person/new", function (request: Request, response: Response) {
+personRouter.post("/person", function (request: Request, response: Response) {
   try{
     addData(request, response);
   }catch(error: any) {

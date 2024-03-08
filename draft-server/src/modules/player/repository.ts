@@ -12,23 +12,23 @@ export class PlayerRepository {
             data: {
                     firstName: req.body.firstName,
                     lastName: req.body.lastName,
-                    age: req.body.age,
-                    height: req.body.height,
-                    weight: req.body.weight,
-                    handSize: req.body.handSize,
-                    armLength: req.body.armLength,
+                    age: parseInt(req.body.age, 10),
+                    height: parseInt(req.body.height, 10),
+                    weight: parseInt(req.body.weight, 10),
+                    handSize: parseInt(req.body.handSize, 10),
+                    armLength: parseInt(req.body.armLength, 10),
                     homeCity: req.body.homeCity,
                     homeState: req.body.homeState,
                     university: req.body.university,
                     status: req.body.status,
                     position: req.body.position,
-                    teamId: req.body.teamId,
-                    year_entered_league: req.body.year_entered_league,
+                    teamId: parseInt(req.body.teamId, 10)
                 },
             });
           res.status(200);
           return entity;
         } catch (e) {
+          console.log("Error on create ");
           res.status(500).json({ error: e });
         }
   }

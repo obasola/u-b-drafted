@@ -16,6 +16,8 @@ export class TeamRepository {
   }
 
   async create(req:Request, res:Response) :Promise<void>{
+    console.log("Creating a new Team...");
+    console.log("name: "+req.body.name+", conf: "+req.body.conference);
         try {
           const entity = await this.prisma.getDbHandle().team.create({
             data: {
@@ -46,12 +48,7 @@ export class TeamRepository {
   }
 
   async findOne(id: number, res: Response):Promise<any>{
-    const entity = await this.prisma.getDbHandle().team.findUnique({
-        where: {
-            id,
-        }
-    })
-    return entity;
+return null;
   }
 
   async update(req: Request, res: Response) {

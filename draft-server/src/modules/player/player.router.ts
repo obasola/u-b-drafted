@@ -7,7 +7,9 @@ export const playerRouter = express.Router();
 
 
 // Create a Player record
-playerRouter.post("/player/new", function (request: Request, response: Response) {
+playerRouter.post("/player", function (request: Request, response: Response) {
+    console.log("In router call, checking values passed from Request object...");
+    console.log("lastName: "+request.body.lastName+", 40 time: "+request.body.forty_time);
   try{
     addData(request, response);
   }catch(error: any) {

@@ -18,6 +18,8 @@ export class TeamService {
   }
 
   async create(req: Request, res: Response) : Promise<void> {
+    console.log("In Service call, checking values passed from Request object...");
+    console.log("name: "+req.body.name+", conf: "+req.body.conference);
     this.repo.create(req,res);
   }
   async readManyNames(): Promise<Team[]> {

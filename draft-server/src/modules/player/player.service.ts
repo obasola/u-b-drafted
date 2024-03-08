@@ -6,6 +6,9 @@ export class PlayerService {
     this.dbRepository = new PlayerRepository();
   }
   async create(req: Request, res: Response) : Promise<void> {
+    console.log("In Service call, checking values passed from Request object...");
+    console.log("firstName: "+req.body.firstName+", 40 time: "+req.body.forty_time);
+
     this.dbRepository.create(req,res);
   }
   async readMany(): Promise<any[]> {
