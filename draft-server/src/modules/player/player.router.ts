@@ -8,8 +8,6 @@ export const playerRouter = express.Router();
 
 // Create a Player record
 playerRouter.post("/player", function (request: Request, response: Response) {
-    console.log("In router call, checking values passed from Request object...");
-    console.log("lastName: "+request.body.lastName+", 40 time: "+request.body.forty_time);
   try{
     addData(request, response);
   }catch(error: any) {
@@ -20,7 +18,7 @@ playerRouter.post("/player", function (request: Request, response: Response) {
 // Read list of all players
 playerRouter.get("/players", function (request: Request, response: Response) {
   try{
-    getMany(response);
+    getManyPlayers(response);
   }catch(error: any) {
     return response.status(500)
                    .json("Error reading list of Player names: "+error.message);
@@ -56,14 +54,16 @@ playerRouter.delete("/player/:id", function (request: Request, response: Respons
 });
 // ******************  Called Functions *****************
 async function addData(req: Request, res: Response) {
+  console.log("In router, checking content of Request");
+  console.log("name: "+req.body.name+", conf: "+req.body.conference);
   await playerService.create(req,res);
 }
-async function getMany(res: Response) {  
+
+async function getManyPlayers(res: Response) {  
   try{
     const players = await playerService.readMany();
-    res.status(200);
+    res.status(200).json(players);
     console.log("Nbr players found: "+players.length);
-    return players;
   }catch(error) {
     console.log("Failed to findMany (players): "+ error);
   }
@@ -73,8 +73,7 @@ async function getUnique(req: Request, res: Response) {
     const entity = await playerService.readOne(req,res);
     if(entity) {
       console.log("Got result back: "+entity);
-      res.status(200);
-      return entity;
+      return res.status(200).json(entity);
     }else{
       return res.status(404).json("Could not find Player by Id: "+req.params.id);
     }

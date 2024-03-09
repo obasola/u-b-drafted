@@ -1,44 +1,47 @@
+
+import { DatabaseService } from "../../utils/db.server";
 import { PlayerRepository } from "./repository";
-import {Request, Response} from "express";
+import { Request, Response } from "express";
+type Player = {
+  id: number;
+  name: string;
+  
+}
+
 export class PlayerService {
-  private dbRepository: PlayerRepository;
+  
+  private service: DatabaseService;
+  private repo:PlayerRepository = new PlayerRepository();
+
   constructor() {
-    this.dbRepository = new PlayerRepository();
+    this.service = new DatabaseService();
   }
+
   async create(req: Request, res: Response) : Promise<void> {
     console.log("In Service call, checking values passed from Request object...");
-    console.log("firstName: "+req.body.firstName+", 40 time: "+req.body.forty_time);
-
-    this.dbRepository.create(req,res);
+    console.log("name: "+req.body.name+", conf: "+req.body.conference);
+    this.repo.create(req,res);
   }
-  async readMany(): Promise<any[]> {
-    const rows = this.dbRepository.readMany();
+
+  async readMany(): Promise<Player[]> {
+    const rows = this.repo.readMany();
     console.log("Rows found using repository call: "+ (await rows).length);
     return rows;
   }
+
   async readOne(req: Request, res: Response): Promise<any> {
-    const entity = await this.dbRepository.readOne(req);
+    let id = parseInt(req.params.id, 10);
+    console.log("Query Id: "+id);
+    const entity = await this.repo.findOne(id, res);
+    console.log("Found result of: "+entity);
     return entity;
   }
-  async update(req: Request, res: Response): Promise<any> {
-    const entity = await this.dbRepository.update(req, res);
-
-    if (entity != null) {
-      res.status(200);
-      return entity;
-    } else {
-      res.status(404).json({ error: 'Person score update failed' });
-    }
-    return null;
+  async update(req: Request, res: Response) : Promise<void> {
+    const entity = this.repo.update(req, res);
+    return entity;
   }
+
   async delete(req: Request, res: Response): Promise<void> {
-  
-    await this.dbRepository.delete(req);
-    const entity = this.dbRepository.readOne(req);
-    if (entity != null) {
-      res.status(404).json({ error: 'Person score delete failed' });
-    }else{
-      res.status(200);
-    }
+    return this.repo.delete(req);
   }
 }

@@ -55,9 +55,9 @@ model Player {
   teamId              Int?
   year_entered_league Int?
   Combine_Score       Combine_Score[]
-  Pick                Pick[]
   Team                Team?           @relation(fields: [teamId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_Player_Team")
   Player_Award        Player_Award[]
+  Pick                Pick[]
 
   @@index([teamId], map: "fk_Player_Team_idx")
 }
