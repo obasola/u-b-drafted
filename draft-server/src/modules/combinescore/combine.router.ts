@@ -1,6 +1,6 @@
 import express from "express";
 import type { Request, Response } from "express";
-import {CombineService} from "./service";
+import {CombineService} from "./combine.service";
 
 const combineService = new CombineService();
 export const combineRouter = express.Router();

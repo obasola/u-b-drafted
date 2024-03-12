@@ -29,19 +29,14 @@ export class CombineRepository {
     return this.prisma.getDbHandle().combine_Score.findMany();
   }
 
-  async readOne(req: Request, res: Response){
+  async readOne(req: Request, res: Response): Promise<any>{
     const id = parseInt(req.params.id, 10);
-    const entity = await this.findOneById(id,res);
-    res.json(entity);
-  }
-  
-  async findOneById(id: number, res: Response){
+
     const entity = await this.prisma.getDbHandle().combine_Score.findUnique({
         where: {
             id: Number(id),
         }
     })
-    res.json(entity);
     return entity;
   }
 

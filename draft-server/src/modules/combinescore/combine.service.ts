@@ -14,8 +14,7 @@ export class CombineService {
   async readMany(): Promise<any[]> {
     return this.dbRepository.readMany();
   }
-  async readOne(req: Request, res: Response): Promise<any> {
-    let id = parseInt(req.params.id, 0);
+  async readOne(req: Request, res: Response): Promise<any> {    
     const entity = await this.dbRepository.readOne(req, res);
     return entity;
   }

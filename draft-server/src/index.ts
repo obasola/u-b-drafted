@@ -81,5 +81,5 @@ app.put("/schedule/:id", scheduleRouter);
 app.delete("/schedule/:id", scheduleRouter);
 // Start Server
 app.listen(PORT, () => {
-    console.log(`Server started successfully on port: ${PORT}`)
+    console.log(`index.ts - Server started successfully on port: ${PORT}`)
 });
