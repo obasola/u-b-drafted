@@ -70,7 +70,7 @@ export class ScheduleRepository {
       } = req.body;
 
    
-    const combScore = await this.prisma.getDbHandle().schedule.update({
+    const schedule = await this.prisma.getDbHandle().schedule.update({
       where: { id: Number(id) },
         data: { 
             opponentId,
@@ -89,7 +89,7 @@ export class ScheduleRepository {
             homeScore,
         },
       });
-      return combScore;
+      return schedule;
   }
 
   async delete(req: Request) {

@@ -13,11 +13,10 @@ type PlayerAward = {
 
 export class PlayerAwardService {
   
-  private service: DatabaseService;
-  private repo:PlayerAwardRepository = new PlayerAwardRepository();
+  private repo:PlayerAwardRepository;
 
   constructor() {
-    this.service = new DatabaseService();
+    this.repo = new PlayerAwardRepository();
   }
 
   async create(req: Request, res: Response) : Promise<void> {

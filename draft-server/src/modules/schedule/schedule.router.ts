@@ -7,7 +7,7 @@ export const scheduleRouter = express.Router();
 
 
 // Create a Schedule record
-scheduleRouter.post("/schedule/new", function (request: Request, response: Response) {
+scheduleRouter.post("/schedule", function (request: Request, response: Response) {
   try{
     addData(request, response);
   }catch(error: any) {

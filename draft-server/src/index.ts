@@ -5,6 +5,7 @@ import { scheduleRouter } from "./modules/schedule/schedule.router";
 import { teamRouter } from "./modules/team/team.router";
 import { pickRouter } from "./modules/pick/pick.router";
 import { playerRouter } from "./modules/player/player.router";
+import { playerAwardRouter } from "./modules/player_award/player_award.router";
 import { combineRouter } from "./modules/combinescore/combine.router";
 
 import cors from "cors";
@@ -48,12 +49,13 @@ app.get("/players", playerRouter);
 app.get("/player/:id", playerRouter);
 app.put("/player/:id", playerRouter);
 app.delete("/player/:id", playerRouter);
+
 // Player Awards
-app.post("/schedule", scheduleRouter);
-app.get("/schedules/", scheduleRouter);
-app.get("/schedule/:id", scheduleRouter);
-app.put("/schedule/:id", scheduleRouter);
-app.delete("/schedule/:id", scheduleRouter);
+app.post("/playerAward", playerAwardRouter);
+app.get("/playerAward/", playerAwardRouter);
+app.get("/playerAward/:id", playerAwardRouter);
+app.put("/playerAward/:id", playerAwardRouter);
+app.delete("/playerAward/:id", playerAwardRouter);
 // Schedule
 app.post("/schedule", scheduleRouter);
 app.get("/schedules/", scheduleRouter);

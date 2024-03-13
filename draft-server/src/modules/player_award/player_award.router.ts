@@ -3,7 +3,7 @@ import type { Request, Response } from "express";
 import { PlayerAwardService } from "./player_award.service";
 
 
-const playerawardService = new PlayerAwardService();
+const playerAwardService = new PlayerAwardService();
 export const playerAwardRouter = express.Router();
 
 
@@ -16,8 +16,8 @@ playerAwardRouter.post("/playeraward", function (request: Request, response: Res
                    .json("Error creating new PlayerAward: "+error.message);
   }
 });
-// Read list of all playerawards
-playerAwardRouter.get("/playerawards", function (request: Request, response: Response) {
+// Read list of all playerAward
+playerAwardRouter.get("/playerAward", function (request: Request, response: Response) {
   try{
     getManyPlayerAwards(response);
   }catch(error: any) {
@@ -26,9 +26,9 @@ playerAwardRouter.get("/playerawards", function (request: Request, response: Res
   }
 });
 // Read PlayerAward by ID
-playerAwardRouter.get("/playeraward/:id", function (request: Request, response: Response) {
+playerAwardRouter.get("/playerAward/:id", function (request: Request, response: Response) {
   try{
-    console.log("2. Looking up playeraward by id");
+    console.log("2. Looking up playerAward by id");
     getUnique(request, response);
   }catch(error: any) {
     return response.status(500)
@@ -36,7 +36,7 @@ playerAwardRouter.get("/playeraward/:id", function (request: Request, response: 
   }
 });
 // Update a PlayerAward record
-playerAwardRouter.put("/playeraward/:id", function (request: Request, response: Response) {
+playerAwardRouter.put("/playerAward/:id", function (request: Request, response: Response) {
   try{
     modifyData(request, response);
   }catch(error: any) {
@@ -45,7 +45,7 @@ playerAwardRouter.put("/playeraward/:id", function (request: Request, response: 
   }
 });
 // Delete a PlayerAward record
-playerAwardRouter.delete("/playeraward/:id", function (request: Request, response: Response) {
+playerAwardRouter.delete("/playerAward/:id", function (request: Request, response: Response) {
   try{
     discardData(request, response);
   }catch(error: any) {
@@ -57,21 +57,21 @@ playerAwardRouter.delete("/playeraward/:id", function (request: Request, respons
 async function addData(req: Request, res: Response) {
   console.log("In router, checking content of Request");
   console.log("name: "+req.body.name+", conf: "+req.body.conference);
-  await playerawardService.create(req,res);
+  await playerAwardService.create(req,res);
 }
 
 async function getManyPlayerAwards(res: Response) {  
   try{
-    const playerawards = await playerawardService.readMany();
-    res.status(200).json(playerawards);
-    console.log("Nbr playerawards found: "+playerawards.length);
+    const playerAwards = await playerAwardService.readMany();
+    res.status(200).json(playerAwards);
+    console.log("Nbr playerawards found: "+playerAwards.length);
   }catch(error) {
     console.log("Failed to findMany (playerawards): "+ error);
   }
 }
 async function getUnique(req: Request, res: Response) {
   try{
-    const entity = await playerawardService.readOne(req,res);
+    const entity = await playerAwardService.readOne(req,res);
     if(entity) {
       console.log("Got result back: "+entity);
       return res.status(200).json(entity);
@@ -86,12 +86,12 @@ async function getUnique(req: Request, res: Response) {
 }
 async function modifyData(req: Request, res: Response) {
   try{
-    const result = await playerawardService.update(req, res);
+    const result = await playerAwardService.update(req, res);
     console.log("call results: "+result);
   }catch(error) {
     console.log("Error on update of PlayerAward data: "+error);
   }
 }
 async function discardData(req: Request, res: Response) {
-  await playerawardService.delete(req,res);
+  await playerAwardService.delete(req,res);
 }

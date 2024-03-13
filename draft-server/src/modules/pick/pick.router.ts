@@ -7,7 +7,7 @@ export const pickRouter = express.Router();
 
 
 // Create a Pick record
-pickRouter.post("/pick/new", function (request: Request, response: Response) {
+pickRouter.post("/pick", function (request: Request, response: Response) {
   try{
     addData(request, response);
   }catch(error: any) {
