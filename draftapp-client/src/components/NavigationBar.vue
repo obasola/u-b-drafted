@@ -11,28 +11,28 @@
       active-text-color="#ffd04b"
       @select="handleSelect"
     >
-      <el-menu-item index="1">Home</el-menu-item>
+      <el-menu-item index="/">Home</el-menu-item>
       <el-sub-menu index="2">
         <template #title>Draft</template>
         <el-sub-menu index="2-1">
           <template #title>Arizona Cardinals</template>
-          <el-menu-item index="2-1-1">Round one</el-menu-item>
-          <el-menu-item index="2-1-2">Round two</el-menu-item>
-          <el-menu-item index="2-1-3">Round three</el-menu-item>
-          <el-menu-item index="2-1-3">Round four</el-menu-item>
-          <el-menu-item index="2-1-3">Round five</el-menu-item>
-          <el-menu-item index="2-1-3">Round six</el-menu-item>
-          <el-menu-item index="2-1-3">Round seven</el-menu-item>
+          <el-menu-item index="/combine/ac1">Round one</el-menu-item>
+          <el-menu-item index="/combine/ac2">Round two</el-menu-item>
+          <el-menu-item index="/combine/ac3">Round three</el-menu-item>
+          <el-menu-item index="/combine/ac4">Round four</el-menu-item>
+          <el-menu-item index="/combine/ac5">Round five</el-menu-item>
+          <el-menu-item index="/combine/ac6">Round six</el-menu-item>
+          <el-menu-item index="/combine/ac7">Round seven</el-menu-item>
         </el-sub-menu>
         <el-sub-menu index="2-2">
           <template #title>Atlanta Falcons</template>
-          <el-menu-item index="2-2-1">Round one</el-menu-item>
-          <el-menu-item index="2-2-2">Round two</el-menu-item>
-          <el-menu-item index="2-2-3">Round three</el-menu-item>
-          <el-menu-item index="2-2-3">Round four</el-menu-item>
-          <el-menu-item index="2-2-3">Round five</el-menu-item>
-          <el-menu-item index="2-2-3">Round six</el-menu-item>
-          <el-menu-item index="2-2-3">Round seven</el-menu-item>
+          <el-menu-item index="/combine/af1">Round one</el-menu-item>
+          <el-menu-item index="/combine/af2">Round two</el-menu-item>
+          <el-menu-item index="/combine/af3">Round three</el-menu-item>
+          <el-menu-item index="/combine/af4">Round four</el-menu-item>
+          <el-menu-item index="/combine/af5">Round five</el-menu-item>
+          <el-menu-item index="/combine/af6">Round six</el-menu-item>
+          <el-menu-item index="/combine/af7">Round seven</el-menu-item>
         </el-sub-menu>
         <el-sub-menu index="2-3">
           <template #title>Carolina Panthers</template>
@@ -60,8 +60,8 @@
         <template #title>Combine</template>
         <el-menu-item index="3-1">Wide Receivers</el-menu-item>
       </el-sub-menu>
-      <el-menu-item index="4">Players</el-menu-item>
-      <el-menu-item index="5">Teams</el-menu-item>
+      <el-menu-item index="/players">Players</el-menu-item>
+      <el-menu-item index="/teams">Teams</el-menu-item>
       <el-sub-menu index="6">
         <template #title>Schedules</template>
         <el-sub-menu index="6-1">

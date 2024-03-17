@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import NavigationBar from './components/NavigationBar.vue'
-import HelloWorld from './components/HelloWorld.vue';
+
 </script>
 
 <template>
   <NavigationBar />
  
-  <HelloWorld msg="Vite + Vue" />
-</template>
+  <router-view />
+  </template>
 
 
 
