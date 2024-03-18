@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import NavigationBar from './components/NavigationBar.vue'
-import HelloWorld from './components/HelloWorld.vue';
+
 </script>
 
 <template>
   <NavigationBar />
  
   <router-view />
+<<<<<<< HEAD
 </template>
+=======
+  </template>
+>>>>>>> main
 
 
 
