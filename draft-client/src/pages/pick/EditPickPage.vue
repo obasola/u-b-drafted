@@ -4,9 +4,5 @@ import component from '../shims-vue';
 </template>
 
 <script setup lang="ts">
-import EditPickComponent from 'src/components/picks/EditPickComponent.vue';
-
-components: {
-  EditPickComponent;
-}
+import EditPickComponent from '../../components/picks/EditPickComponent.vue';
 </script>
