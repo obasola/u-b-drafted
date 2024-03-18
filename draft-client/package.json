@@ -1,5 +1,5 @@
 {
-  "name": "net.ibukun.draftclient",
+  "name": "net.kumasi.draft.client",
   "version": "0.0.1",
   "description": "NFL Draft tracker tool",
   "productName": "NFL Draft Tracker Client App",
@@ -12,6 +12,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/node": "^20.11.28",
+    "@types/typescript": "^2.0.0",
     "axios": "^1.6.7",
     "element-plus": "^2.6.1",
     "pinia": "^2.1.7",
@@ -21,7 +23,6 @@
     "vue-router": "^4.0.0"
   },
   "devDependencies": {
-    "@types/node": "^12.20.21",
     "@typescript-eslint/eslint-plugin": "^5.10.0",
     "@typescript-eslint/parser": "^5.10.0",
     "@vitejs/plugin-vue": "^5.0.4",
