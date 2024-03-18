@@ -6,7 +6,7 @@ import HelloWorld from './components/HelloWorld.vue';
 <template>
   <NavigationBar />
  
-  <HelloWorld msg="Vite + Vue" />
+  <router-view />
 </template>
 
 
