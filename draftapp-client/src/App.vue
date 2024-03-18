@@ -5,13 +5,8 @@ import NavigationBar from './components/NavigationBar.vue'
 
 <template>
   <NavigationBar />
- 
   <router-view />
-<<<<<<< HEAD
 </template>
-=======
-  </template>
->>>>>>> main
 
 
 
