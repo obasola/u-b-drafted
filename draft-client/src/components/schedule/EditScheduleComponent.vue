@@ -1,5 +1,5 @@
 <template>
-  <h2>Draft Team</h2>
+  <h2>Pick Schedule</h2>
   </template>
   <!-- ******************* SCRIPT BEGINS HERE ******************** -->
   <script setup lang="ts">

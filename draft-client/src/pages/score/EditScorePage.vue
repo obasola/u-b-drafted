@@ -1,12 +1,8 @@
 import component from '../shims-vue';
 <template>
-  <EditTeamComponent />
+  <CombineScoreEditComponent />
 </template>
 
 <script setup lang="ts">
-import EditTeamComponent from '../components/teams/EditTeamComponent.vue';
-
-components: {
-  EditTeamComponent;
-}
+import CombineScoreEditComponent from '../../components/combine/CombineScoreEditComponent.vue';
 </script>

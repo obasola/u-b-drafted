@@ -4,9 +4,5 @@ import component from '../shims-vue';
 </template>
 
 <script setup lang="ts">
-import ListPlayersComponent from 'src/components/players/ListPlayersComponent.vue';
-
-components: {
-  ListPlayersComponent;
-}
+import ListPlayersComponent from '../../components/players/ListPlayersComponent.vue';
 </script>

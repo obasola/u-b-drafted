@@ -1,0 +1,8 @@
+<template>
+<h2>Schedule List</h2>
+</template>
+<!-- ******************* SCRIPT BEGINS HERE ******************** -->
+<script setup lang="ts">
+console.log("entry point");
+</script>
+<!-- ******************* STYLE BEGINS HERE ******************** -->

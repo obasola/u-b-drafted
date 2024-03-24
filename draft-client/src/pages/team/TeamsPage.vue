@@ -1,12 +1,8 @@
 import component from '../shims-vue';
 <template>
-  <ListTeamsComponent />
+  <TeamComponent />
 </template>
 
 <script setup lang="ts">
-import ListTeamsComponent from 'src/components/teams/ListTeamsComponent.vue';
-
-components: {
-  ListTeamsComponent;
-}
+import TeamComponent from '../../components/teams/TeamComponent.vue';
 </script>

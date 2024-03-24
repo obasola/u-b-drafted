@@ -1,12 +1,10 @@
 import component from '../shims-vue';
 <template>
-  <ListPicksComponent />
+  <CombineScoreComponent />
 </template>
 
 <script setup lang="ts">
-import ListPicksComponent from 'src/components/picks/ListPicksComponent.vue';
+import CombineScoreComponent from '../../components/combine/CombineScoreComponent.vue';
 
-components: {
-  ListPicksComponent;
-}
+
 </script>

@@ -16,43 +16,43 @@
         <template #title>Draft</template>
         <el-sub-menu index="2-1">
           <template #title>Arizona Cardinals</template>
-          <el-menu-item index="/combine/ac1">Round one</el-menu-item>
-          <el-menu-item index="/combine/ac2">Round two</el-menu-item>
-          <el-menu-item index="/combine/ac3">Round three</el-menu-item>
-          <el-menu-item index="/combine/ac4">Round four</el-menu-item>
-          <el-menu-item index="/combine/ac5">Round five</el-menu-item>
-          <el-menu-item index="/combine/ac6">Round six</el-menu-item>
-          <el-menu-item index="/combine/ac7">Round seven</el-menu-item>
+          <el-menu-item index="/picks/ac/1">Round one</el-menu-item>
+          <el-menu-item index="/picks/ac/2">Round two</el-menu-item>
+          <el-menu-item index="/picks/ac/3">Round three</el-menu-item>
+          <el-menu-item index="/picks/ac/4">Round four</el-menu-item>
+          <el-menu-item index="/picks/ac/5">Round five</el-menu-item>
+          <el-menu-item index="/picks/ac/6">Round six</el-menu-item>
+          <el-menu-item index="/picks/ac/7">Round seven</el-menu-item>
         </el-sub-menu>
         <el-sub-menu index="2-2">
           <template #title>Atlanta Falcons</template>
-          <el-menu-item index="/combine/af1">Round one</el-menu-item>
-          <el-menu-item index="/combine/af2">Round two</el-menu-item>
-          <el-menu-item index="/combine/af3">Round three</el-menu-item>
-          <el-menu-item index="/combine/af4">Round four</el-menu-item>
-          <el-menu-item index="/combine/af5">Round five</el-menu-item>
-          <el-menu-item index="/combine/af6">Round six</el-menu-item>
-          <el-menu-item index="/combine/af7">Round seven</el-menu-item>
+          <el-menu-item index="/picks/af/1">Round one</el-menu-item>
+          <el-menu-item index="/picks/af/2">Round two</el-menu-item>
+          <el-menu-item index="/picks/af/3">Round three</el-menu-item>
+          <el-menu-item index="/picks/af/4">Round four</el-menu-item>
+          <el-menu-item index="/picks/af/5">Round five</el-menu-item>
+          <el-menu-item index="/picks/af/6">Round six</el-menu-item>
+          <el-menu-item index="/picks/af/7">Round seven</el-menu-item>
         </el-sub-menu>
         <el-sub-menu index="2-3">
           <template #title>Carolina Panthers</template>
-          <el-menu-item index="2-3-1">Round one</el-menu-item>
-          <el-menu-item index="2-3-2">Round two</el-menu-item>
-          <el-menu-item index="2-3-3">Round three</el-menu-item>
-          <el-menu-item index="2-3-3">Round four</el-menu-item>
-          <el-menu-item index="2-3-3">Round five</el-menu-item>
-          <el-menu-item index="2-3-3">Round six</el-menu-item>
-          <el-menu-item index="2-3-3">Round seven</el-menu-item>
+          <el-menu-item index="picks/cp/1">Round one</el-menu-item>
+          <el-menu-item index="picks/cp/2">Round two</el-menu-item>
+          <el-menu-item index="picks/cp/3">Round three</el-menu-item>
+          <el-menu-item index="picks/cp/4">Round four</el-menu-item>
+          <el-menu-item index="picks/cp/5">Round five</el-menu-item>
+          <el-menu-item index="picks/cp/6">Round six</el-menu-item>
+          <el-menu-item index="picks/cp/7">Round seven</el-menu-item>
         </el-sub-menu>
         <el-sub-menu index="2-4">
           <template #title>Chicago Bears</template>
-          <el-menu-item index="2-4-1">Round one</el-menu-item>
-          <el-menu-item index="2-4-2">Round two</el-menu-item>
-          <el-menu-item index="2-4-3">Round three</el-menu-item>
-          <el-menu-item index="2-4-3">Round four</el-menu-item>
-          <el-menu-item index="2-4-3">Round five</el-menu-item>
-          <el-menu-item index="2-4-3">Round six</el-menu-item>
-          <el-menu-item index="2-4-3">Round seven</el-menu-item>
+          <el-menu-item index="picks/cb/1">Round one</el-menu-item>
+          <el-menu-item index="picks/cb/2">Round two</el-menu-item>
+          <el-menu-item index="picks/cb/3">Round three</el-menu-item>
+          <el-menu-item index="picks/cb/4">Round four</el-menu-item>
+          <el-menu-item index="picks/cb/5">Round five</el-menu-item>
+          <el-menu-item index="picks/cb/6">Round six</el-menu-item>
+          <el-menu-item index="picks/cb/7">Round seven</el-menu-item>
         </el-sub-menu>
       </el-sub-menu>
       
@@ -66,8 +66,10 @@
         <template #title>Schedules</template>
         <el-sub-menu index="6-1">
             <template #title>Site access</template>
-          <el-menu-item index="6-1-1">Log in</el-menu-item>
-          <el-menu-item index="6-2-2">Log out</el-menu-item>
+          <el-menu-item index="/user/login"><router-link :to="{ name: 'Login' }">Log In</router-link></el-menu-item>
+          <el-menu-item index="/user/logoff">Log out</el-menu-item>
+          <el-menu-item index="/user/list">List Users</el-menu-item>
+          <el-menu-item index="/user/register">Register User</el-menu-item>
         </el-sub-menu>
       </el-sub-menu>
     </el-menu>
