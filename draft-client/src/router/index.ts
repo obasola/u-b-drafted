@@ -11,37 +11,37 @@ import ScorePage from '../pages/score/ScorePage.vue';
 import EditScorePage from '../pages/score/EditScorePage.vue';
 import IndexPage from '../pages/IndexPage.vue';
 import EditPersonPage from '../pages/person/EditPersonPage.vue';
-
+import LogoutPage from '../pages/person/LogoutPage.vue';
 import ListPeoplePage from '../pages/person/ListPeoplePage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {path: "/", name: "home", component: IndexPage,},
-  {path: "/picks", name: "pick", component: PicksPage,},
-  {path: "/picks/:team/:round", name: "picks", component: PicksPage,},
-  {path: "/pick/edit", name: "pickEdit", component: EditPickPage,},
-  {path: "/pick/draft", name: "pickDraft", component: DraftPicksPage,},
+  {path: "/picks",              name: "PickList", component: PicksPage,},
+  {path: "/picks/:team/:round", name: "PicksByRound", component: PicksPage,},
+  {path: "/pick/edit",          name: "PickEdit", component: EditPickPage,},
+  {path: "/pick/draft",         name: "PickDraft", component: DraftPicksPage,},
 
-  {path: "/players", name: "pick", component: PicksPage,},
-  {path: "/pick/edit", name: "pickEdit", component: EditPickPage,},
-  {path: "/pick/draft", name: "pickDraft", component: DraftPicksPage,},
+  {path: "/players",            name: "PlayerList", component: PicksPage,},
+  {path: "/player/edit",        name: "PlayerEdit", component: EditPickPage,},
+  {path: "/player/draft",       name: "PlayerDraft", component: DraftPicksPage,},
   
-  {path: "/teams", name: "pick", component: PicksPage,},
-  {path: "/pick/edit", name: "pickEdit", component: EditPickPage,},
-  {path: "/pick/draft", name: "pickDraft", component: DraftPicksPage,},
+  {path: "/teams",              name: "TeamList", component: PicksPage,},
+  {path: "/team/edit",          name: "TeamEdit", component: EditPickPage,},
+  {path: "/team/draft",         name: "TeamDraft", component: DraftPicksPage,},
 
-  {path: "/scores", name: "pick", component: ScorePage,},
-  {path: "/score/edit", name: "pickEdit", component: EditScorePage,},
-  {path: "/score/draft", name: "pickDraft", component: DraftPicksPage,},
+  {path: "/scores",             name: "CombineList", component: ScorePage,},
+  {path: "/score/edit",         name: "CombineEdit", component: EditScorePage,},
+  {path: "/score/draft",        name: "CombineDraft", component: DraftPicksPage,},
 
-  {path: "/schedules", name: "pick", component: PicksPage,},
-  {path: "/pick/edit", name: "pickEdit", component: EditPickPage,},
-  {path: "/pick/draft", name: "pickDraft", component: DraftPicksPage,},
+  {path: "/schedules",          name: "ScheduleList", component: PicksPage,},
+  {path: "/schedule/edit",      name: "ScheduleEdit", component: EditPickPage,},
+  {path: "/schedule/draft",     name: "ScheduleDraft", component: DraftPicksPage,},
 
-  {path: "/person/:id", name: "person", component: EditPersonPage,},
-  {path: "/login", name: "Login", component: EditPersonPage,},
-  {path: "/logout", name: "person", component: EditPersonPage,},
-  {path: "/people", name: "person", component: ListPeoplePage,},
-  {path: "/person", name: "person", component: EditPersonPage,},
+  {path: "/person/:id",         name: "PersonById", component: EditPersonPage,},
+  {path: "/login",              name: "Login", component: EditPersonPage,},
+  {path: "/logout",             name: "Logout", component: LogoutPage,},
+  {path: "/people",             name: "PeopleList", component: ListPeoplePage,},
+  {path: "/person",             name: "PersonEdit", component: EditPersonPage,},
 ];
 const router = createRouter({
   history: createWebHashHistory(),
