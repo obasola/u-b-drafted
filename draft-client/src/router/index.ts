@@ -30,7 +30,7 @@ const routes: Array<RouteRecordRaw> = [
   {path: "/team/draft",         name: "TeamDraft", component: DraftPicksPage,},
 
   {path: "/scores",             name: "CombineList", component: ScorePage,},
-  {path: "/score/:id",          name: "CombineEdit", component: EditScorePage, props: true}
+  {path: "/score/:id",          name: "CombineEdit", component: EditScorePage, props: true},
   {path: "/score/edit",         name: "CombineEdit", component: EditScorePage,},
   {path: "/score/draft",        name: "CombineDraft", component: DraftPicksPage,},
 
