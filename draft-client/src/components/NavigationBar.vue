@@ -16,33 +16,35 @@
         <template #title>Draft</template>
         <el-sub-menu index="2-1">
           <template #title>Arizona Cardinals</template>
-          <el-menu-item index="/picks/ac/1" ><router-link :to="{ name: 'PicksByRound'}">Round one</el-menu-item>
-          <el-menu-item index="/picks/ac/2" ><router-link :to="{ name: 'PicksByRound'}">Round two</el-menu-item>
-          <el-menu-item index="/picks/ac/3" ><router-link :to="{ name: 'PicksByRound'}">Round three</el-menu-item>
-          <el-menu-item index="/picks/ac/4" ><router-link :to="{ name: 'PicksByRound'}">Round four</el-menu-item>
-          <el-menu-item index="/picks/ac/5" ><router-link :to="{ name: 'PicksByRound'}">Round five</el-menu-item>
-          <el-menu-item index="/picks/ac/6" ><router-link :to="{ name: 'PicksByRound'}">Round six</el-menu-item>
-          <el-menu-item index="/picks/ac/7" ><router-link :to="{ name: 'PicksByRound'}">Round seven</el-menu-item>
+          <el-menu-item index="/picks/ac/1" >
+          <router-link :to="{ name: 'PicksByRound'}">Round one</router-link>
+          </el-menu-item>
+          <el-menu-item index="/picks/ac/2" ><router-link :to="{ name: 'PicksByRound'}">Round two</router-link></el-menu-item>
+          <el-menu-item index="/picks/ac/3" ><router-link :to="{ name: 'PicksByRound'}">Round three</router-link></el-menu-item>
+          <el-menu-item index="/picks/ac/4" ><router-link :to="{ name: 'PicksByRound'}">Round four</router-link></el-menu-item>
+          <el-menu-item index="/picks/ac/5" ><router-link :to="{ name: 'PicksByRound'}">Round five</router-link></el-menu-item>
+          <el-menu-item index="/picks/ac/6" ><router-link :to="{ name: 'PicksByRound'}">Round six</router-link></el-menu-item>
+          <el-menu-item index="/picks/ac/7" ><router-link :to="{ name: 'PicksByRound'}">Round seven</router-link></el-menu-item>
         </el-sub-menu>
         <el-sub-menu index="2-2">
           <template #title>Atlanta Falcons</template>
-          <el-menu-item index="/picks/af/1" ><router-link :to="{ name: 'PicksByRound'}">Round one</el-menu-item>
-          <el-menu-item index="/picks/af/2" ><router-link :to="{ name: 'PicksByRound'}">Round two</el-menu-item>
-          <el-menu-item index="/picks/af/3" ><router-link :to="{ name: 'PicksByRound'}">Round three</el-menu-item>
-          <el-menu-item index="/picks/af/4" ><router-link :to="{ name: 'PicksByRound'}">Round four</el-menu-item>
-          <el-menu-item index="/picks/af/5" ><router-link :to="{ name: 'PicksByRound'}">Round five</el-menu-item>
-          <el-menu-item index="/picks/af/6" ><router-link :to="{ name: 'PicksByRound'}">Round six</el-menu-item>
-          <el-menu-item index="/picks/af/7" ><router-link :to="{ name: 'PicksByRound'}">Round seven</el-menu-item>
+          <el-menu-item index="/picks/af/1" ><router-link :to="{ name: 'PicksByRound'}">Round one</router-link></el-menu-item>
+          <el-menu-item index="/picks/af/2" ><router-link :to="{ name: 'PicksByRound'}">Round two</router-link></el-menu-item>
+          <el-menu-item index="/picks/af/3" ><router-link :to="{ name: 'PicksByRound'}">Round three</router-link></el-menu-item>
+          <el-menu-item index="/picks/af/4" ><router-link :to="{ name: 'PicksByRound'}">Round four</router-link></el-menu-item>
+          <el-menu-item index="/picks/af/5" ><router-link :to="{ name: 'PicksByRound'}">Round five</router-link></el-menu-item>
+          <el-menu-item index="/picks/af/6" ><router-link :to="{ name: 'PicksByRound'}">Round six</router-link></el-menu-item>
+          <el-menu-item index="/picks/af/7" ><router-link :to="{ name: 'PicksByRound'}">Round seven</router-link></el-menu-item>
         </el-sub-menu>
         <el-sub-menu index="2-3">
           <template #title>Carolina Panthers</template>
-          <el-menu-item index="picks/cp/1" ><router-link :to="{ name: 'PicksByRound'}">Round one</el-menu-item>
-          <el-menu-item index="picks/cp/2" ><router-link :to="{ name: 'PicksByRound'}">Round two</el-menu-item>
-          <el-menu-item index="picks/cp/3" ><router-link :to="{ name: 'PicksByRound'}">Round three</el-menu-item>
-          <el-menu-item index="picks/cp/4" ><router-link :to="{ name: 'PicksByRound'}">Round four</el-menu-item>
-          <el-menu-item index="picks/cp/5" ><router-link :to="{ name: 'PicksByRound'}">Round five</el-menu-item>
-          <el-menu-item index="picks/cp/6" ><router-link :to="{ name: 'PicksByRound'}">Round six</el-menu-item>
-          <el-menu-item index="picks/cp/7" ><router-link :to="{ name: 'PicksByRound'}">Round seven</el-menu-item>
+          <el-menu-item index="picks/cp/1" ><router-link :to="{ name: 'PicksByRound'}">Round one</router-link></el-menu-item>
+          <el-menu-item index="picks/cp/2" ><router-link :to="{ name: 'PicksByRound'}">Round two</router-link></el-menu-item>
+          <el-menu-item index="picks/cp/3" ><router-link :to="{ name: 'PicksByRound'}">Round three</router-link></el-menu-item>
+          <el-menu-item index="picks/cp/4" ><router-link :to="{ name: 'PicksByRound'}">Round four</router-link></el-menu-item>
+          <el-menu-item index="picks/cp/5" ><router-link :to="{ name: 'PicksByRound'}">Round five</router-link></el-menu-item>
+          <el-menu-item index="picks/cp/6" ><router-link :to="{ name: 'PicksByRound'}">Round six</router-link></el-menu-item>
+          <el-menu-item index="picks/cp/7" ><router-link :to="{ name: 'PicksByRound'}">Round seven</router-link></el-menu-item>
         </el-sub-menu>
         <el-sub-menu index="2-4">
           <template #title>Chicago Bears</template>
@@ -69,7 +71,7 @@
           <el-menu-item index="/user/login"><router-link :to="{ name: 'Login' }">Log In</router-link></el-menu-item>
           <el-menu-item index="/user/logout"><router-link :to="{ name: 'Logout' }">Log Out</router-link></el-menu-item>
           <el-menu-item index="/user/list"><router-link :to="{  name: 'UserList'}">List Users</router-link></el-menu-item>
-          <el-menu-item index="/user/register"><router-link :to="{'AddUser'}">Register User</router-link></el-menu-item>
+          <el-menu-item index="/user/register"><router-link :to="{name: 'AddUser'}">Register User</router-link></el-menu-item>
         </el-sub-menu>
       </el-sub-menu>
     </el-menu>

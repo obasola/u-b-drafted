@@ -40,6 +40,7 @@ const routes: Array<RouteRecordRaw> = [
 
   {path: "/person/:id",         name: "PersonById", component: EditPersonPage, props: true},
   {path: "/login",              name: "Login", component: EditPersonPage,},
+  {path: "/AddPerson",          name: "AddPerson", component: EditPersonPage,},
   {path: "/logout",             name: "Logout", component: LogoutPage,},
   {path: "/people",             name: "PeopleList", component: ListPeoplePage,},
   {path: "/person",             name: "PersonEdit", component: EditPersonPage,},
