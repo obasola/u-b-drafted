@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
+import axios from '@/utils/axios';
 
-export interface Team {
+interface Team {
   id: number;
   name: string;
   city: string;
@@ -8,20 +9,23 @@ export interface Team {
   conference: string;
 }
 
-export const useTeamStore = defineStore('team', {
+export const useTeamStore = defineStore('teamStore', {
   state: () => ({
     teams: [] as Team[],
-    entityInstance: null as Team | null,
+    team: null as Team | null,
   }),
   actions: {
-    setTeams(teams: Team[]) {
-      this.teams = teams;
+    async fetchTeams() {
+      const response = await axios.get('/teams');
+      this.teams = response.data;
     },
-    updateTeam(updatedTeam: Team) {
-      const index = this.teams.findIndex(team => team.id === updatedTeam.id);
-      if (index !== -1) {
-        this.teams[index] = updatedTeam;
-      }
-    }
+    async fetchTeam(id: number) {
+      const response = await axios.get(`/teams/${id}`);
+      this.team = response.data;
+    },
+    async updateTeam(team: Team) {
+      await axios.put(`/teams/${team.id}`, team);
+      await this.fetchTeams();
+    },
   },
 });

@@ -4,33 +4,38 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import {useRouter} from 'vue-router';
 import Menubar from "primevue/menubar";
 
+const router = useRouter();
 const items = ref([
   {
     label: "Home",
     icon: "pi pi-home",
+    command: () => router.push( {name: 'home'})
   },
   {
     label: "Features",
     icon: "pi pi-star",
   },
   {
-    label: "Projects",
+    label: "NFL Draft",
     icon: "pi pi-search",
     items: [
       {
-        label: "Components",
-        icon: "pi pi-bolt",
+        label: "Players",
+        icon: 'pi pi-fw pi-users',
+        command: () => router.push({name: 'players'})
       },
       {
         label: "Teams",
-        icon: "pi pi-fw pi-users",
-        to: "/teams",
+        icon: "pi pi-bolt",
+        command: () => router.push({name: 'teams'})
       },
       {
-        label: "UI Kit",
-        icon: "pi pi-pencil",
+        label: "Picks",
+        icon: 'pi pi-fw pi-list',
+        command: () => router.push({name: 'picks'})
       },
       {
         label: "Templates",
@@ -49,8 +54,9 @@ const items = ref([
     ],
   },
   {
-    label: "Contact",
+    label: "About",
     icon: "pi pi-envelope",
+    command: () => router.push({ name: 'about' })
   },
 ]);
 </script>

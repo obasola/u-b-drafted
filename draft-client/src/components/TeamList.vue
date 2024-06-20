@@ -1,7 +1,7 @@
 <template>
     <div>
       <h1>Teams</h1>
-      <DataTable :value="teams">
+      <DataTable :value="teamStore.teams">
         <Column field="name" header="Name"></Column>
         <Column field="city" header="City"></Column>
         <Column field="state" header="State"></Column>
@@ -28,11 +28,9 @@
   const teamStore = useTeamStore();
   
   onMounted(async () => {
-    const response = await apiClient.get('/teams');
-    teamStore.setTeams(response.data);
+    teamStore.fetchTeams();
   });
-  
-  const teams = teamStore.teams;
+
   </script>
   
   <style>

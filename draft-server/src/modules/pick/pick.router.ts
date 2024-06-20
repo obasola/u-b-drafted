@@ -59,8 +59,8 @@ async function addData(req: Request, res: Response) {
 async function getMany(res: Response) {  
   try{
     const picks = await pickService.readMany();
-    res.status(200);
-    console.log("Nbr picks found: "+picks.length);
+    res.status(200).json(picks);
+    console.log("SVC call - Nbr picks found: "+picks.length);
     return picks;
   }catch(error) {
     console.log("Failed to findMany (picks): "+ error);
