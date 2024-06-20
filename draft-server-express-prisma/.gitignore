@@ -1,5 +1,0 @@
-node_modules
-# Keep environment variables out of version control and node_modules too
-.env
-/dist
-
