@@ -46,11 +46,17 @@ export class PlayerRepository {
   }
   
   async readMany() :Promise<any> {
-    return this.prisma.getDbHandle().player.findMany();
+    return this.prisma.getDbHandle().player.findMany({
+      include: { Player_Award: true },
+    });
   }
 
   async findOne(id: number, res: Response):Promise<any>{
-return null;
+    return this.prisma.getDbHandle().player.findUnique({
+      where: {
+        id: (id),
+      }
+    })
   }
 
   async update(req: Request, res: Response) {

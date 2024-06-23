@@ -1,23 +1,38 @@
 <template>
-    <div v-if="player">
+    <div v-if="player" style="width: 500px; float: center;">
       <h1>{{ player.firstName }} {{ player.lastName }}</h1>
-      <div class="p-fluid p-formgrid p-grid">
-        <div class="p-field p-col-12 p-md-6">
-          <label for="firstName">First Name</label>
-          <InputText v-model="player.firstName" id="firstName" />
+
+      <div style="width: 535px;">
+        <table>
+          <tr>
+            <td><label for="firstName" style="float:left">First Name</label></td>
+            <td><InputText v-model="player.firstName" id="firstName" /></td>
+          </tr>
+          <tr>
+            <td>
+              <label for="lastName" style="float:left">Last Name</label></td>
+            <td><InputText v-model="player.lastName" id="lastName" /></td>
+          </tr>
+          <tr>
+            <td><label for="university" style="float:left">University</label></td>
+            <td> <InputText v-model="player.university" id="university" /></td>
+          </tr>
+
+          <tr>
+            <td><label for="position" style="float:left">Position</label></td>
+            <td><InputText v-model="player.position" id="position" /></td>
+          </tr>
+          <tr>
+            <td><label for="age" style="float:left">Age</label></td>
+            <td><InputNumber v-model="player.age" id="age" /></td>
+          </tr>
+          <tr>
+            <td colspan="2" style="float:right"><Button label="Save" icon="pi pi-check" @click="savePlayer" /> &nbsp;&nbsp;
+            <router-link to="/players">Back to List</router-link></td>
+          </tr>
+        </table>
+          <!-- Add other fields similarly -->
         </div>
-        <div class="p-field p-col-12 p-md-6">
-          <label for="lastName">Last Name</label>
-          <InputText v-model="player.lastName" id="lastName" />
-        </div>
-        <div class="p-field p-col-12 p-md-6">
-          <label for="age">Age</label>
-          <InputNumber v-model="player.age" id="age" />
-        </div>
-        <!-- Add other fields similarly -->
-      </div>
-      <Button label="Save" icon="pi pi-check" @click="savePlayer" />
-      <router-link to="/">Back to List</router-link>
     </div>
   </template>
   

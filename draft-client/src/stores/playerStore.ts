@@ -15,11 +15,11 @@ export const usePlayerStore = defineStore('playerStore', {
       console.log("Player rows found: " + response.data.length);
     },
     async fetchPlayer(id: number) {
-      const response = await axios.get(`/players/${id}`);
+      const response = await axios.get(`/player/${id}`);
       this.player = response.data;
     },
     async updatePlayer(player: Player) {
-      await axios.put(`/players/${player.id}`, player);
+      await axios.put(`/player/${player.id}`, player);
       await this.fetchPlayers();
     },
     updatePlayerInStore(updatedPlayer: Player) {

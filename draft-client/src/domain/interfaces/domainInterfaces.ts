@@ -29,9 +29,19 @@ export default interface Player {
   homeCity: string;
   homeState: string;
   university: string;
+  year_entered_league: string,
   pickId: number;
   position: string;
+  
 }
+export default interface PlayerAward {
+    id: number;
+    playerId: number;
+    award_name: string;
+    year_awarded: number;
+
+  }
+
 export default interface CombineScore {
   id: number;
   fortyTime: number;

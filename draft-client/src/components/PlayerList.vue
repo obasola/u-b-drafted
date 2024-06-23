@@ -4,7 +4,9 @@
       <DataTable :value="playerStore.players">
         <Column field="firstName" header="First Name"></Column>
         <Column field="lastName" header="Last Name"></Column>
+        <Column field="university" header="University"></Column>
         <Column field="position" header="Position"></Column>
+        <Column field="year_entered_league" header="NFL Debut"></Column>
         <Column header="Actions">
           <template #body="slotProps">
             <router-link :to="'/player/' + slotProps.data.id">

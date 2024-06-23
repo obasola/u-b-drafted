@@ -34,7 +34,9 @@ export class TeamRepository {
   }
   
   async readMany() :Promise<any> {
-    return this.prisma.getDbHandle().team.findMany();
+    return this.prisma.getDbHandle().team.findMany({
+      include: {Player: true},
+    });
   }
   async findManyNames(): Promise<any[]> {
     const listTeamNames = this.prisma.getDbHandle().team.findMany({
@@ -48,7 +50,19 @@ export class TeamRepository {
   }
 
   async findOne(id: number, res: Response):Promise<any>{
-return null;
+    const user = await this.prisma.getDbHandle().team.findUnique({
+      where: {
+        id: Number(id) ,
+      },
+    })
+  }
+
+  async findByName(name: string, res: Response):Promise<any>{
+    const user = await this.prisma.getDbHandle().team.findFirst({
+      where: {
+       name: (name) ,
+      },
+    })
   }
 
   async update(req: Request, res: Response) {
