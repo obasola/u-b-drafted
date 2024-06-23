@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.32, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
 --
 -- Host: localhost    Database: MyNFL
 -- ------------------------------------------------------
@@ -29,7 +29,7 @@ CREATE TABLE `Team` (
   `state` varchar(45) DEFAULT NULL,
   `conference` varchar(35) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `Team` (
 
 LOCK TABLES `Team` WRITE;
 /*!40000 ALTER TABLE `Team` DISABLE KEYS */;
-INSERT INTO `Team` VALUES (61,'Arizona Cardinals','Tempe','AZ','NFC'),(62,'Atlanta Falcons','Atlanta','GA','NFC'),(63,'Baltimore Ravens','Baltimore','MD','AFC'),(65,'Buffalo Bills','Buffalo','NY','AFC'),(66,'Carolina Panthers','Charlotte','SC','NFC'),(67,'Chicago Bears','Chicago','IL','NFC'),(68,'Cincinnati Bengals','Cincinnati','OH','AFC'),(69,'Cleveland Browns','Cleveland','OH','AFC'),(70,'Dallas Cowboys','Dallas','TX','NFC'),(71,'Detroit Lions','Detroit','MI','NFC'),(72,'Denver Broncos','Denver','CO','AFC'),(73,'Green Bay Packers','Green Bay','WI','NFC'),(74,'Houston Oilers','Houston','TX','AFC'),(75,'Indianapolis Colts','Indianapolis','IN','AFC'),(76,'Jacksonville Jaguars','Jacksonville','FL','AFC'),(77,'Los Angeles Rams','Los Angeles','CA','NFC'),(78,'Kansas City Chiefs','Kansas City','MO','AFC'),(79,'Las Vegas Raiders','Las Vages','NV','AFC'),(80,'Minnesota Vikings','Minneapolis','MN','NFC');
+INSERT INTO `Team` VALUES (61,'Arizona Cardinals','Tempe','AZ','NFC'),(62,'Atlanta Falcons','Atlanta','GA','NFC'),(63,'Baltimore Ravens','Baltimore','MD','AFC'),(65,'Buffalo Bills','Buffalo','NY','AFC'),(66,'Carolina Panthers','Charlotte','SC','NFC'),(67,'Chicago Bears','Chicago','IL','NFC'),(68,'Cincinnati Bengals','Cincinnati','OH','AFC'),(69,'Cleveland Browns','Cleveland','OH','AFC'),(70,'Dallas Cowboys','Dallas','TX','NFC'),(71,'Detroit Lions','Detroit','MI','NFC'),(72,'Denver Broncos','Denver','CO','AFC'),(73,'Green Bay Packers','Green Bay','WI','NFC'),(74,'Houston Oilers','Houston','TX','AFC'),(75,'Indianapolis Colts','Indianapolis','IN','AFC'),(76,'Jacksonville Jaguars','Jacksonville','FL','AFC'),(77,'Los Angeles Rams','Los Angeles','CA','NFC'),(78,'Kansas City Chiefs','Kansas City','MO','AFC'),(79,'Las Vegas Raiders','Las Vages','NV','AFC'),(80,'Minnesota Vikings','Minneapolis','MN','NFC'),(81,'Boston Bettles','Boston','MA','AFC'),(82,'New York Giants','New York City','NY','NFC');
 /*!40000 ALTER TABLE `Team` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-19 12:43:33
+-- Dump completed on 2024-06-22 22:30:36

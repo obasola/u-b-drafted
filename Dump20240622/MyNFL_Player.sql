@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.32, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
 --
 -- Host: localhost    Database: MyNFL
 -- ------------------------------------------------------
@@ -41,7 +41,7 @@ CREATE TABLE `Player` (
   PRIMARY KEY (`id`),
   KEY `fk_Player_Team_idx` (`teamId`),
   CONSTRAINT `fk_Player_Team` FOREIGN KEY (`teamId`) REFERENCES `Team` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,6 +50,7 @@ CREATE TABLE `Player` (
 
 LOCK TABLES `Player` WRITE;
 /*!40000 ALTER TABLE `Player` DISABLE KEYS */;
+INSERT INTO `Player` VALUES (15,'Marvin','Harrison Jr',21,6.3,209,9,32,'Philadelphia','PA','Ohio State','','WR',NULL,2024),(16,'Malik','Nabers',21,6,200,0,0,'Youngsville','LA','LSU','Junior','WR',82,0),(17,'Xavier','Legette',23,61,221,9,32,'Mullins','SC','South Carolina U','Senior','WR',NULL,0),(18,'Brian','Thomas',21,63,209,10,33,'Baton Rouge','LA','LSU','Junior','WR',NULL,0),(19,'Patrick','Mahomes',26,NULL,NULL,NULL,NULL,NULL,NULL,'Texas Tech',NULL,'QB',78,2017),(20,'Adonai','Mitchell',21,6.2,NULL,NULL,NULL,NULL,NULL,'University of Texas',NULL,'WR',NULL,2024),(22,'Xavier','Worthy',21,5.11,NULL,NULL,NULL,NULL,NULL,'University of Texas',NULL,'WR',78,NULL);
 /*!40000 ALTER TABLE `Player` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -62,4 +63,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-19 12:43:33
+-- Dump completed on 2024-06-22 22:30:36

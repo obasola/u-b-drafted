@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.32, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
 --
 -- Host: localhost    Database: MyNFL
 -- ------------------------------------------------------
@@ -16,43 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `Schedule`
+-- Table structure for table `Post_Season_Result`
 --
 
-DROP TABLE IF EXISTS `Schedule`;
+DROP TABLE IF EXISTS `Post_Season_Result`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `Schedule` (
+CREATE TABLE `Post_Season_Result` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `opponentId` int NOT NULL,
-  `homeTeamId` int DEFAULT NULL,
-  `scheduleWeek` int DEFAULT NULL,
-  `gameDate` date DEFAULT NULL,
-  `gameCity` varchar(45) DEFAULT NULL,
-  `gameStateProvince` varchar(45) DEFAULT NULL,
-  `gameCountry` varchar(45) DEFAULT NULL,
-  `gameLocation` varchar(75) DEFAULT NULL,
-  `opponentConference` varchar(45) DEFAULT NULL,
-  `opponentDivision` varchar(45) DEFAULT NULL,
-  `wonLostFlag` varchar(1) DEFAULT NULL,
-  `homeOrAway` varchar(1) DEFAULT NULL,
-  `opponentScore` int DEFAULT NULL,
-  `homeScore` int DEFAULT NULL,
+  `playoff_year` int NOT NULL,
+  `last_round_reached` varchar(45) DEFAULT NULL,
+  `win_lose` varchar(1) DEFAULT NULL,
+  `opponent_score` int DEFAULT NULL,
+  `team_score` int DEFAULT NULL,
+  `teamId` int DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_Schedule_1_idx` (`opponentId`),
-  KEY `fk_Schedule_Home_idx` (`homeTeamId`),
-  CONSTRAINT `fk_Schedule_Home` FOREIGN KEY (`homeTeamId`) REFERENCES `Team` (`id`),
-  CONSTRAINT `fk_Schedule_Visitor` FOREIGN KEY (`opponentId`) REFERENCES `Team` (`id`)
+  KEY `fk_Team_idx` (`teamId`),
+  CONSTRAINT `fk_Team` FOREIGN KEY (`teamId`) REFERENCES `Team` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Schedule`
+-- Dumping data for table `Post_Season_Result`
 --
 
-LOCK TABLES `Schedule` WRITE;
-/*!40000 ALTER TABLE `Schedule` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Schedule` ENABLE KEYS */;
+LOCK TABLES `Post_Season_Result` WRITE;
+/*!40000 ALTER TABLE `Post_Season_Result` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Post_Season_Result` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -64,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-19 12:43:33
+-- Dump completed on 2024-06-22 22:30:36

@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.32, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
 --
 -- Host: localhost    Database: MyNFL
 -- ------------------------------------------------------
@@ -30,7 +30,7 @@ CREATE TABLE `Player_Award` (
   PRIMARY KEY (`id`),
   KEY `FK_Player_Awards_idx` (`playerId`),
   CONSTRAINT `FK_Player_Awards` FOREIGN KEY (`playerId`) REFERENCES `Player` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +39,7 @@ CREATE TABLE `Player_Award` (
 
 LOCK TABLES `Player_Award` WRITE;
 /*!40000 ALTER TABLE `Player_Award` DISABLE KEYS */;
+INSERT INTO `Player_Award` VALUES (1,19,'Regular Season MVP',2019),(2,19,'SuperBowl MVP',2021),(3,19,'Regular Season MVP',2023),(4,19,'SuperBowl MVP',2023);
 /*!40000 ALTER TABLE `Player_Award` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-19 12:43:33
+-- Dump completed on 2024-06-22 22:30:36

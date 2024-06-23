@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.32, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
 --
 -- Host: localhost    Database: MyNFL
 -- ------------------------------------------------------
@@ -16,37 +16,43 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `Pick`
+-- Table structure for table `Schedule`
 --
 
-DROP TABLE IF EXISTS `Pick`;
+DROP TABLE IF EXISTS `Schedule`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `Pick` (
+CREATE TABLE `Schedule` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `selectionRound` int DEFAULT NULL,
-  `selectionNumber` int DEFAULT NULL,
-  `selectionYear` varchar(4) DEFAULT NULL,
-  `selectionPickFrom` varchar(45) DEFAULT NULL,
-  `selectionPickTo` varchar(45) DEFAULT NULL,
-  `combineScore` int DEFAULT NULL,
-  `Team_id` int NOT NULL,
-  `Player_id` int NOT NULL,
+  `opponentId` int NOT NULL,
+  `homeTeamId` int DEFAULT NULL,
+  `scheduleWeek` int DEFAULT NULL,
+  `gameDate` date DEFAULT NULL,
+  `gameCity` varchar(45) DEFAULT NULL,
+  `gameStateProvince` varchar(45) DEFAULT NULL,
+  `gameCountry` varchar(45) DEFAULT NULL,
+  `gameLocation` varchar(75) DEFAULT NULL,
+  `opponentConference` varchar(45) DEFAULT NULL,
+  `opponentDivision` varchar(45) DEFAULT NULL,
+  `wonLostFlag` varchar(1) DEFAULT NULL,
+  `homeOrAway` varchar(1) DEFAULT NULL,
+  `opponentScore` int DEFAULT NULL,
+  `homeScore` int DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_Pick_Team1_idx` (`Team_id`),
-  KEY `fk_Pick_Player1_idx` (`Player_id`),
-  CONSTRAINT `fk_Pick_Player1` FOREIGN KEY (`Player_id`) REFERENCES `Player` (`id`),
-  CONSTRAINT `fk_Pick_Team1` FOREIGN KEY (`Team_id`) REFERENCES `Team` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `fk_Schedule_1_idx` (`opponentId`),
+  KEY `fk_Schedule_Home_idx` (`homeTeamId`),
+  CONSTRAINT `fk_Schedule_Home` FOREIGN KEY (`homeTeamId`) REFERENCES `Team` (`id`),
+  CONSTRAINT `fk_Schedule_Visitor` FOREIGN KEY (`opponentId`) REFERENCES `Team` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Pick`
+-- Dumping data for table `Schedule`
 --
 
-LOCK TABLES `Pick` WRITE;
-/*!40000 ALTER TABLE `Pick` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Pick` ENABLE KEYS */;
+LOCK TABLES `Schedule` WRITE;
+/*!40000 ALTER TABLE `Schedule` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Schedule` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -58,4 +64,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-19 12:43:33
+-- Dump completed on 2024-06-22 22:30:36
