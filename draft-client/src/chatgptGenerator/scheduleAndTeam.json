@@ -1,0 +1,41 @@
+Create a vue 3 CRUD app using <script setup lang="ts">, 
+typescript, nodemon, pinia, axios, vue-router, and primevue.
+Use components for the CRUD actions and PRIMEVUE DataTable 
+for the List component, and PrimeVue Inputs for the create 
+and edit components. The List component should use a primevue Datatable 
+and Create / Edit components should use primevue input elements. 
+
+how would I design a Vue 3 CRUD app with <script setup lang="ts"> 
+using Pinia, Vue-Router, Typescript, vue components, and PrimeVue.
+The List component should use primevue data table and provide link to detail component on row click.
+
+The Create and Edit components show include a dropdown list for foreign keys when present.
+Data is retrieved from a database using axios and stored in a pinia store and then retrieved to populate the components.
+A Master / Detail component need to be created to show Schedule and team when the row is clicked from the list page.
+Use the following interface for the crud pages:
+
+interface Schedule {
+    id: number;
+    teamID: number;
+    opponentId: number;
+    scheduleWeek: number;
+    gameDate: Date;
+    gameCity: string;
+    gameStateProvince: TemplateStringsArray;
+    gameCountry: string;
+    gameLocation: string;
+    opponentConference: string;
+    opponentDivision: string;
+    winLostFlag: string;
+    homeOrAway: string;
+  }
+  
+  export default interface Team {
+    id: number;
+    name: string;
+    city: string;
+    state: string;
+    conference: string;
+  }
+
+ 

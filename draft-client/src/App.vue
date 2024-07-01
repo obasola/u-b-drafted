@@ -4,7 +4,7 @@
 </template>
 
 <script setup lang="ts">
-  import MenuBar from './components/MenuBar.vue';
+  import MenuBar from './components/misc/MenuBar.vue';
 </script>
 
 <style>

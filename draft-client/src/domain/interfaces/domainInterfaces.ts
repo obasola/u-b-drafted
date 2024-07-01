@@ -1,3 +1,4 @@
+import TeamList from '@/components/team/TeamList.vue';
 export default interface Team {
   id: number;
   name: string;
@@ -32,6 +33,7 @@ export default interface Player {
   year_entered_league: string,
   pickId: number;
   position: string;
+  Team: Team;
   
 }
 export default interface PlayerAward {
@@ -39,7 +41,6 @@ export default interface PlayerAward {
     playerId: number;
     award_name: string;
     year_awarded: number;
-
   }
 
 export default interface CombineScore {
