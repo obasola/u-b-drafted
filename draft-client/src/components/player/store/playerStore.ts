@@ -1,7 +1,37 @@
 import { defineStore } from 'pinia';
 import axios from '@/utils/axios';
-import Player from '@/domain/interfaces/domainInterfaces';
-import PlayerAward from '@/domain/interfaces/domainInterfaces';
+ 
+interface Team {
+  id: number;
+  name: string;
+  city: string;
+  state: string;
+  conference: string;
+}
+interface Player {
+  id: number;
+  firstName: string;
+  lastName: string;
+  age: number;
+  height: number;
+  weight: number;
+  handSize: number;
+  armLength: number;
+  homeCity: string;
+  homeState: string;
+  university: string;
+  year_entered_league: string,
+  pickId: number;
+  position: string;
+  Team: Team;
+  
+}
+interface PlayerAward {
+    id: number;
+    playerId: number;
+    award_name: string;
+    year_awarded: number;
+  }
 
 export const usePlayerStore = defineStore('playerStore', {
   state: () => ({
@@ -11,7 +41,7 @@ export const usePlayerStore = defineStore('playerStore', {
   }),
   actions: {
     async createPlayer(player: Player) {
-      const response = await axios.post('/players', player);
+      const response = await axios.post('/player', player);
       this.players.push(response.data);
     },
     async fetchPlayers() {

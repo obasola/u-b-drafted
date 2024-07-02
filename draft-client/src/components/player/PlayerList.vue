@@ -1,6 +1,12 @@
 <template>
     <div>
-      <h1>Players</h1>
+      <div><h1>Players</h1></div> 
+      <div>
+        <router-link :to="'/player/create'">
+          <Button label="Add Player" icon="pi pi-search" style="float:right; margin-top: -2.5em;"/> 
+        </router-link>
+        
+      </div>
       <DataTable :value="playerStore.players">
         <Column field="firstName" header="First Name"></Column>
         <Column field="lastName" header="Last Name"></Column>
@@ -36,5 +42,8 @@ import { usePlayerStore } from './store/playerStore';
   const onRowClick = (event: any) => {
     router.push(`/players/${event.data.id}`);
   };
+  function openCreatePage() {
+    router.push("/playerCreate");
+  }
   </script>
   
