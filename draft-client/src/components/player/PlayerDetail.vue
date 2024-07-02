@@ -26,9 +26,29 @@
             <td><InputText v-model="player.position" id="position" /></td>
           </tr>
           <tr>
-            <td><label for="age" style="float: left">Age</label></td>
-            <td><InputNumber v-model="player.age" id="age" /></td>
-          </tr>
+          <td><label for="yearEntered" style="float: left">Entered NFL</label></td>
+          <td><InputNumber v-model="player.year_entered_league" id="yearEntered" /></td>
+        </tr>
+        <tr>
+          <td><label for="age" style="float: left">Age</label></td>
+          <td><InputNumber v-model="player.age" id="age" /></td>
+        </tr>
+        <tr>
+          <td><label for="height" style="float: left">Height</label></td>
+          <td><InputNumber mode="decimal" v-model="player.height" id="height" /></td>
+        </tr>
+        <tr>
+          <td><label for="weight" style="float: left">Weight</label></td>
+          <td><InputNumber mode="decimal" v-model="player.weight" id="weight" /></td>
+        </tr>
+        <tr>
+          <td><label for="armlength" style="float: left">Arm Length</label></td>
+          <td><InputNumber mode="decimal" v-model="player.armLength" id="armLength" /></td>
+        </tr>
+        <tr>
+          <td><label for="handSize" style="float: left">Hand Size</label></td>
+          <td><InputNumber mode="decimal" v-model="player.handSize" id="handSize" /></td>
+        </tr>
           <tr>
             <td colspan="2" style="float: right">
               <Button label="Save" icon="pi pi-check" @click="savePlayer" />

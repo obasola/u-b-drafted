@@ -30,7 +30,7 @@ export default interface Player {
   homeCity: string;
   homeState: string;
   university: string;
-  year_entered_league: string,
+  year_entered_league: number,
   pickId: number;
   position: string;
   Team: Team;

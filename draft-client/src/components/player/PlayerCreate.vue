@@ -27,7 +27,7 @@
         </tr>
         <tr>
           <td><label for="yearEntered" style="float: left">Entered NFL</label></td>
-          <td><InputText v-model="playerDomain.year_entered_league" id="yearEntered" /></td>
+          <td><InputNumber v-model="playerDomain.year_entered_league" id="yearEntered" /></td>
         </tr>
         <tr>
           <td><label for="age" style="float: left">Age</label></td>
@@ -35,19 +35,19 @@
         </tr>
         <tr>
           <td><label for="height" style="float: left">Height</label></td>
-          <td><InputNumber v-model="playerDomain.height" id="height" /></td>
+          <td><InputNumber mode="decimal" v-model="playerDomain.height" id="height" /></td>
         </tr>
         <tr>
           <td><label for="weight" style="float: left">Weight</label></td>
-          <td><InputNumber v-model="playerDomain.weight" id="weight" /></td>
+          <td><InputNumber mode="decimal" v-model="playerDomain.weight" id="weight" /></td>
         </tr>
         <tr>
           <td><label for="armlength" style="float: left">Arm Length</label></td>
-          <td><InputNumber v-model="playerDomain.armLength" id="armLength" /></td>
+          <td><InputNumber mode="decimal" v-model="playerDomain.armLength" id="armLength" /></td>
         </tr>
         <tr>
           <td><label for="handSize" style="float: left">Hand Size</label></td>
-          <td><InputNumber v-model="playerDomain.handSize" id="handSize" /></td>
+          <td><InputNumber mode="decimal" v-model="playerDomain.handSize" id="handSize" /></td>
         </tr>
        
       </table>

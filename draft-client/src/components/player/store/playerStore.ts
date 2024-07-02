@@ -20,7 +20,7 @@ interface Player {
   homeCity: string;
   homeState: string;
   university: string;
-  year_entered_league: string,
+  year_entered_league: number,
   pickId: number;
   position: string;
   Team: Team;
@@ -60,7 +60,7 @@ export const usePlayerStore = defineStore('playerStore', {
       this.awards = data;
     },
     async updatePlayer(player: Player) {
-      await axios.put(`/player/${player.id}/edit`, player);
+      await axios.put(`/player/${player.id}`, player);
       await this.fetchPlayers();
     },
     updatePlayerInStore(updatedPlayer: Player) {
