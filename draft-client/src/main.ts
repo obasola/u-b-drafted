@@ -11,6 +11,7 @@ import InputNumber from 'primevue/inputnumber';
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
 import Column from 'primevue/column';
+import Dropdown from 'primevue/dropdown';
 
 import 'primevue/resources/themes/saga-blue/theme.css';      // Theme
 import 'primevue/resources/primevue.min.css';               // Core CSS
@@ -26,6 +27,7 @@ app.component('InputText',InputText);
 app.component('InputNumber',InputNumber);
 app.component('DataTable',DataTable);
 app.component('Dialog',Dialog);
+app.component("Dropdown", Dropdown);
 app.component('Button',Button);
 app.component('Column',Column);
 app.mount('#app');

@@ -46,7 +46,8 @@ onMounted(async () => {
 });
 
 const createSchedule = () => {
-  router.push('/create');
+  alert("Calling createSchedule now");
+  router.push('/schedule/create');
 };
 
 const editSchedule = (key: any) => {

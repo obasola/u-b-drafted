@@ -12,9 +12,11 @@ import PlayerAwardsList from '../components/player/PlayerAwardsList.vue';
 import PickList from '@/components/pick/PickList.vue';
 import ScheduleList from '@/components/schedule/ScheduleList.vue';
 import ScheduleDetail from '@/components/schedule/ScheduleDetail.vue';
-import ScheduleCreate from '@/components/schedule/ScheduleCreate.vue';
+import ScheduleCreate from '@/components/schedule/ScheduleCreateOrEdit.vue';
+
 import CombineScoreList from '@/components/combine/CombineScoreList.vue';
 import CombineScoreDetail from '@/components/combine/CombineScoreForm.vue';
+import PlayerAwardForm from '@/components/player/PlayerAwardForm.vue';
 
 
 const routes: Array<RouteRecordRaw> = [
@@ -32,12 +34,15 @@ const routes: Array<RouteRecordRaw> = [
   { path: '/player/:id/edit', component: PlayerEdit, props: true },
   { path: '/player/:id/awards', component: PlayerDetail, props: true },
   { path: '/playerAwards', name: 'playerAwards', component: PlayerAwardsList },
+  { path: '/playerAwardCreate', name: 'playerAwardCreate', component: PlayerAwardForm},
 
   { path: "/teams", name: 'teams', component: TeamList },
   { path: "/team/:id", component: TeamDetail, props: true },
+
   { path: '/schedules', name: "schedules", component: ScheduleList },
-  { path: '/schedule/:action/:id', component: ScheduleDetail, props: true },
-  { path: '/schedule/create', component: ScheduleCreate },
+  { path: '/schedule/:id', name: "viewSchedule", component: ScheduleDetail, props: true },
+  { path: '/schedule/create', name: "createSchedule", component: ScheduleCreate },
+
   { path: '/combine-scoreList', name: "combineScores", component: CombineScoreList },
   { path: '/combine-score', name: "conbineScore", component: CombineScoreDetail, props: true },
   { path: '/combine-score/:id', name: "conbineScoreDetail", component: CombineScoreDetail, props: true },

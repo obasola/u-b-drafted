@@ -43,7 +43,7 @@
         </tr>
         <tr>
           <td><label for="armlength" style="float: left">Arm Length</label></td>
-          <td><InputNumber mode="decimal" v-model="player.armLength" id="armLength" /></td>
+          <td><InputNumber mode="decimal" v-model="playerStore.player.armLength" id="armLength" /></td>
         </tr>
         <tr>
           <td><label for="handSize" style="float: left">Hand Size</label></td>
@@ -64,7 +64,7 @@
           <Column field="year_awarded" header="Year Awarded" />
         </DataTable>
         <Dialog v-model:visible="isDialogVisible" :modal="true" :closable="false">
-          <PlayerAwardDetail :award="selectedAward" @close="isDialogVisible = false" />
+          <PlayerAwardDetail :playerStore.award="selectedAward" @close="isDialogVisible = false" />
         </Dialog>
       </div>    
   </div>
@@ -98,7 +98,10 @@ const player = computed(() => {
   console.log("Requst complete");
   return playerStore.players.find((player) => player.id === playerId);
 });
-
+const openDialog = () => {
+  alert("openDialog reached");
+  router.push("/playweAwards");
+}
 const onRowClick = (event: any) => {
     playerAwardsStore.selectAward(event.data);
     isDialogVisible.value = true;

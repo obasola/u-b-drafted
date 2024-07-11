@@ -7,7 +7,21 @@ import scheduleApi from '@/api/schedule';
 export const useScheduleStore = defineStore('schedule', {
   state: () => ({
     schedules: [] as Schedule[],
-    schedule: null as Schedule | null,
+    schedule: {
+      id: 0,
+      teamID: 0,
+      opponentId: 0,
+      scheduleWeek: 0,
+      gameDate: new Date(),
+      gameCity: '',
+      gameStateProvince: '',
+      gameCountry: '',
+      gameLocation: '',
+      opponentConference: '',
+      opponentDivision: '',
+      winLostFlag: '',
+      homeOrAway: '',
+    },
   }),
   actions: {
     async fetchSchedules() {

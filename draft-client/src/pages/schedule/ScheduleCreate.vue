@@ -5,5 +5,5 @@
 </template>
 
 <script setup lang="ts">
-    import ScheduleCreate from '@/components/schedule/ScheduleCreate.vue';
+    import ScheduleCreate from '@/components/schedule/ScheduleCreateOrEdit.vue';
 </script>

@@ -44,9 +44,9 @@
         </tr>
         <tr>
           <td><label for="handSize" style="float: left">Hand Size</label></td>
-          <td><InputNumber mode="decimal" v-model="player.handSize" id="handSize" /></td>
-        </tr>
-          <tr>
+          <td><InputNumber mode="decimal" v-model="playerhandSize" id="handSize" /></td>
+
+sCXx 
             <td colspan="2" style="float:right"><Button label="Save" icon="pi pi-check" @click="savePlayer" /> &nbsp;&nbsp;
             <router-link to="/players">Back to List</router-link></td>
           </tr>
@@ -64,13 +64,13 @@
   import InputText from 'primevue/inputtext';
   import InputNumber from 'primevue/inputnumber';
   import Button from 'primevue/button';
-  import Toast from 'primevue/toast';
+  import ToastMessenger from '@/utils/ToastMessenger';
 
   const route = useRoute();
   const router = useRouter();
   const playerStore = usePlayerStore();
   const playerId = Number(route.params.id);
-  const toast = ref();
+  const toastService = new ToastMessenger();
   
   const player = computed(() => {
     return playerStore.players.find(player => player.id === playerId);
@@ -79,14 +79,12 @@
   const savePlayer = () => {
     if (player.value) {      
       playerStore.updatePlayer(player.value);
-      showToast('success','success','Player modifications persistened to Database successfully');
+      toastService.showToast('success','success','Player modifications persistened to Database successfully');
       router.push('/');
     }
   };
 
-  function showToast(severity: string, summary: string, detail: string) {
-      toast.value?.add({ severity, summary, detail, life: 3000 });
-    }
+ 
   </script>
   
   <style>

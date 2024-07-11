@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import axios from '@/utils/axios';
  
+ 
 interface Team {
   id: number;
   name: string;
@@ -24,7 +25,7 @@ interface Player {
   pickId: number;
   position: string;
   Team: Team;
-  
+  award: PlayerAward;
 }
 interface PlayerAward {
     id: number;
@@ -36,7 +37,31 @@ interface PlayerAward {
 export const usePlayerStore = defineStore('playerStore', {
   state: () => ({
     players: [] as Player[],
-    player: null as Player | null,
+    player: {
+      id: 0,
+      firstName: '',
+      lastName: '',
+      age: 0,
+      height:0,
+      weight: 0,
+      handSize: 0,
+      armLength: 0,
+      homeCity: '',
+      homeState: '',
+      university: '',
+      year_entered_league: 0,
+      pickId: 0,
+      position: '',
+      Team:  {
+        id: 0,
+        name: '',
+        city: '',
+        state: '',
+        conference: '',
+      },
+      award: null as PlayerAward | null,
+      
+    },
     awards: [] as PlayerAward[],
   }),
   actions: {
