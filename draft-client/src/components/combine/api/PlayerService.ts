@@ -1,5 +1,5 @@
 import apiClient from '@/utils/axios';
-import Player from '@/domain/interfaces/domainInterfaces';
+import Player from '@/domain/interfaces/Player';
 import { reactive, ref } from 'vue';
 
 export interface PlayerName {

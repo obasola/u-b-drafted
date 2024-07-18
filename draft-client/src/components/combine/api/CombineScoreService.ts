@@ -1,5 +1,5 @@
 import apiClient from '@/utils/axios';
-import CombineScore from '@/domain/interfaces/domainInterfaces';
+import CombineScore from '@/domain/interfaces/CombineScore';
 
 export const getCombineScores = () => {
   return apiClient.get<CombineScore[]>('/combineScores');

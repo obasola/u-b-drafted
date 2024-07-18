@@ -2,7 +2,7 @@
 
 import { defineStore } from 'pinia';
 import { getCombineScores, createCombineScore, getCombineScore } from '@/components/combine/api/CombineScoreService';
-import CombineScore from '@/domain/interfaces/domainInterfaces';
+import CombineScore from '@/domain/interfaces/CombineScore';
 import apiClient from '@/utils/axios';
 
 export const useCombineScoreStore = defineStore('combineScoreStore', {

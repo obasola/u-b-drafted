@@ -2,8 +2,8 @@
 
 export interface Schedule {
     id: number;
-    teamID: number;
-    opponentId: number;
+    teamName: string;
+    opponentName: string;
     scheduleWeek: number;
     gameDate: Date;
     gameCity: string;

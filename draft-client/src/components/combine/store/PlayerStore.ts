@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { getPlayers } from '../api/PlayerService';
 import { ref } from 'vue';
-import Player from '@/domain/interfaces/domainInterfaces';
+import Player from '@/domain/interfaces/Player';
 
 export const usePlayerStore = defineStore('playerStore', {
   state: () => ({

@@ -18,7 +18,7 @@
   import { usePickStore} from './store/pickStore';
   import InputText from 'primevue/inputtext';
   import InputNumber from 'primevue/inputnumber';
-  import Pick from '@/domain/interfaces/domainInterfaces';
+  import Pick from '@/domain/interfaces/IPick';
   const route = useRoute();
   const pickStore = usePickStore();
   const pickId = Number(route.params.id);

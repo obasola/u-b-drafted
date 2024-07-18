@@ -7,12 +7,40 @@ interface Team {
   city: string;
   state: string;
   conference: string;
+  division: string;
+  stadium: string;
 }
 
 export const useTeamStore = defineStore('teamStore', {
   state: () => ({
     teams: [] as Team[],
-    team: null as Team | null,
+    team: {} as Team | {
+      id: 0,
+      name: '',
+      city: '',
+      state: '',
+      conference: '',
+      division: '',
+      stadium: ''
+    },
+    homeTeam: {} as Team | {
+      id: 0,
+      name: '',
+      city: '',
+      state: '',
+      conference: '',
+      division: '',
+      stadium: ''
+    },
+    OpposingTeam: {} as Team | {
+      id: 0,
+      name: '',
+      city: '',
+      state: '',
+      conference: '',
+      division: '',
+      stadium: ''
+    }
   }),
   actions: {
     async createPick(team: Team) {

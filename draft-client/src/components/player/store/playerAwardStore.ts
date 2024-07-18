@@ -3,7 +3,7 @@
 // stores/playerAwards.ts
 import { defineStore } from "pinia";
 import axios from "@/utils/axios";
-import Player from '@/domain/interfaces/domainInterfaces';
+import Player from '@/domain/interfaces/Pick';
 
 interface PlayerAward {
   id: number;

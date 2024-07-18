@@ -5,11 +5,27 @@
           <tr>
             <td>
               <thead>
-                <label for="teamId">Id</label>
+                <label for="gameCity">Game Location</label>
               </thead>
             </td>
             <td>
-              <InputText id="teamId" v-model="schedule.teamID"/>
+              <Dropdown 
+                v-model="schedule.gameCity" 
+                :options="cityOptions" 
+                optionLabel="city" 
+                placeholder="Select a City"
+                @change="onCityChange"
+              ></Dropdown>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <thead>
+                <label for="teamId">Team</label>
+              </thead>
+            </td>
+            <td>
+              <InputText readonly id="teamName" v-model="teamStore.homeTeam.name"/>
             </td>
           </tr>
           <tr>
@@ -19,7 +35,13 @@
               </thead>
             </td>
             <td>
-              <InputText id="opponentId" v-model="schedule.opponentId"/>
+              <Dropdown 
+                v-model="schedule.opponentName" 
+                :options="opposingTeamOptions" 
+                optionLabel="name" 
+                placeholder="Select a Team"
+                @change="onOpposingTeamChange"
+              ></Dropdown>
             </td>
           </tr>
           <tr>
@@ -41,23 +63,7 @@
             <td>
               <Calendar id="gameDate" v-model="schedule.gameDate"/>
             </td>
-          </tr>
-          <tr>
-            <td>
-              <thead>
-                <label for="gameCity">Game Location</label>
-              </thead>
-            </td>
-            <td>
-              <p-dropdown 
-                v-model="schedule.gameCity" 
-                :options="cities" 
-                optionLabel="city" 
-                placeholder="Select a City"
-                @change="onCityChange"
-              ></p-dropdown>
-            </td>
-          </tr>
+          </tr>          
           <tr>
             <td>
               <thead>
@@ -65,12 +71,7 @@
               </thead>
             </td>
             <td>
-              <p-dropdown 
-                v-model="schedule.gameStateProvince" 
-                :options="states" 
-                optionLabel="state" 
-                placeholder="Select a State"
-              ></p-dropdown>
+              <InputText readonly id="StateOrProvence" v-model="schedule.gameStateProvince"  />
             </td>
           </tr>
           <tr>
@@ -116,11 +117,11 @@
           <tr>
             <td>
               <thead>
-                <label for="winLoss">Win / Loss</label>
+                <label for="winLoss">Win / LosT</label>
               </thead>
             </td>
             <td>
-              <InputText id="winLoss" v-model="schedule.winLostFlag" placeholder="Win/Loss" />
+              <Dropdown v-model="schedule.winLostFlag" :options="wlOptions" optionLabel="label" />
             </td>
           </tr>
           <tr>
@@ -130,7 +131,12 @@
               </thead>
             </td>
             <td>
-              <InputText id="homeAway" v-model="schedule.homeOrAway" placeholder="Home/Away" />
+              <Dropdown 
+                v-model="schedule.homeOrAway" 
+                :options="options" 
+                optionLabel="label"
+                @change="onHomeAwayFlagChange"
+              />
             </td>
           </tr>
           <tr>            
@@ -147,35 +153,70 @@
   import { ref, reactive, watch, onMounted } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
   import { useScheduleStore } from './store/scheduleStore';
+  import { useTeamStore } from '../team/store/teamStore';
   import { CityService } from '../misc/CityService';
   import { Schedule } from '@/api/schedule';
-import NFLTeam from '../misc/NFLTeam';
+  import NFLTeam from '../misc/TeamStadium';
+  import Team from '@/domain/interfaces/Team';
   
   const store = useScheduleStore();
+  const teamStore = useTeamStore();
   const route = useRoute();
   const router = useRouter();
   const service = new CityService();
 
-  const nflTeams = service.getCities();
-
-  const cities = nflTeams.map(NFLTeam => ({
-      label: NFLTeam.city,
-      value: NFLTeam.city
-    }));
-  const states = nflTeams.map(NFLTeam => ({
-      label: NFLTeam.state,
-      value: NFLTeam.state
-    }));
-  const schedule = ref<Schedule>({
+  const cityOptions = ref<{ city: string, state: string }[]>([]);
+  
+  const opposingTeamOptions = ref<{name: string, conference: string, division: string}[]>([]);
+  const homeTeams = ref(service.getCities() );
+  const opposingTeams = ref(service.getCities() );
+  const homeTeam = ref<Team>({
     id: 0,
-    teamID: 0,
-    opponentId: 0,
+    name: '',
+    city: '',
+    state: '',
+    conference: '',
+    division: '',
+    stadium: '',
+  });
+  const opposingTeamSelected = ref<Team>({
+    id: 0,
+    name: '',
+    city: '',
+    state: '',
+    conference: '',
+    division: '',
+    stadium: '',
+  });
+  // Define the type for options
+  interface Option {
+    label: string;
+    value: string;
+  }
+  cityOptions.value = homeTeams.value.map(team => ({ name: team.name, city: team.city, state: team.state, conference: team.conference, division: team.division, stadium: team.stadium }));
+  opposingTeamOptions.value = opposingTeams.value.map(team => ({ name: team.name, city: team.city, state: team.state, conference: team.conference, division: team.division, stadium: team.stadium }));
+
+
+const options: Option[] = [
+    { label: 'Home', value: 'home' },
+    { label: 'Away', value: 'away' },
+  ];
+  const wlOptions: Option[] = [
+    { label: '', value: 'Choose' },
+    { label: 'Lost', value: 'L' },
+    { label: 'Won', value: 'W' },
+  ];
+
+  const schedule = ref({
+    id: 0,
+    teamName: '',
     scheduleWeek: 0,
     gameDate: new Date(),
     gameCity: '',
     gameStateProvince: '',
-    gameCountry: '',
+    gameCountry: 'USA',
     gameLocation: '',
+    opponentName: '',
     opponentConference: '',
     opponentDivision: '',
     winLostFlag: '',
@@ -187,14 +228,46 @@ import NFLTeam from '../misc/NFLTeam';
 
   // Define reactive variables
     const selectedCity = ref<NFLTeam | null>(null);
-    const selectedState = ref<string | null>(null);
+    cityOptions.value = homeTeams.value.map(team => ({ name: team.name, city: team.city, state: team.state, conference: team.conference, division: team.division, stadium: team.stadium }));
+    
+
+    const resetOpposingTeam = () => {
+      opposingTeams.value = service.getCities();
+      cityOptions.value = opposingTeams.value.map(team => ({ name: team.name, city: team.city, state: team.state, 
+      conference: team.conference, division: team.division, stadium: team.stadium }));
+    }
 
     // Handle city dropdown change
-    const onCityChange = (e: any) => {
-      const selectedTeam: NFLTeam = e.value;
-      selectedState.value = selectedTeam.state;
-      store.schedule.gameStateProvince = selectedTeam.state;
+    const onCityChange = (e: any) => {      
+      teamStore.homeTeam = e.value;
+      schedule.value.gameStateProvince = teamStore.homeTeam.state;
+      store.schedule.gameStateProvince = teamStore.homeTeam.state;
+      schedule.value.teamName = teamStore.homeTeam.name;
     };
+
+    // Handle Team dropdown change
+    const onOpposingTeamChange = (e: any) => {      
+      teamStore.OpposingTeam = e.value;
+
+      schedule.value.gameLocation = teamStore.OpposingTeam.stadium;      schedule.value.opponentConference = opposingTeamSelected.value.conference;
+      schedule.value.opponentDivision = teamStore.OpposingTeam.division;
+      schedule.value.opponentConference = teamStore.OpposingTeam.conference;
+    };
+
+    const onHomeAwayFlagChange = (e: any) => {
+      const haFlag: any = e.value;
+
+      if(haFlag === 'away') {
+        schedule.value.gameLocation = teamStore.OpposingTeam.stadium;
+        alert("Stadium chgd to " + teamStore.OpposingTeam.stadium);
+        alert("Opposing team: "+ teamStore.OpposingTeam.name);
+      }else{
+        schedule.value.gameLocation = teamStore.homeTeam.stadium;
+        alert("Stadium chgd to " + teamStore.homeTeam.stadium);
+        alert("Home team: " + teamStore.homeTeam.name);
+      }
+      
+    }
 
   const fetchSchedule = async (id: number) => {
     alert("Error - not implemented");

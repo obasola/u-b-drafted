@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import axios from '@/utils/axios';
-import Pick from '@/domain/interfaces/domainInterfaces';
+import Pick from '@/domain/interfaces/Pick';
 
 export const usePickStore = defineStore('pickStore', {
   state: () => ({
