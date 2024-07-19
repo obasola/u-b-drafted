@@ -41,6 +41,13 @@ export class TeamService {
     console.log("Found result of: "+entity);
     return entity;
   }
+  async readByName(req: Request, res: Response) : Promise<any> {
+    let name = req.params.name;
+    if(name.length <= 0) {
+      return null;
+    }
+    return this.repo.findByName(name, res);
+  }
   async update(req: Request, res: Response) : Promise<void> {
     const entity = this.repo.update(req, res);
     return entity;

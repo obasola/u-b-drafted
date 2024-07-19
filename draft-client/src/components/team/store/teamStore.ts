@@ -55,6 +55,10 @@ export const useTeamStore = defineStore('teamStore', {
       const response = await axios.get(`/teams/${id}`);
       this.team = response.data;
     },
+    async findByName(name: string) {
+      const response = await axios.get('/team/name/${name}');
+      this.team = response.data;      
+    },
     async updateTeam(team: Team) {
       await axios.put(`/teams/${team.id}`, team);
       await this.fetchTeams();

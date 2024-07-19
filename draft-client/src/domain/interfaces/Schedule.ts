@@ -5,7 +5,7 @@ export default interface Schedule {
     scheduleWeek: number;
     gameDate: Date;
     gameCity: string;
-    gameStateProvince: TemplateStringsArray;
+    gameStateProvince: string;
     gameCountry: string;
     gameLocation: string;
     opponentConference: string;

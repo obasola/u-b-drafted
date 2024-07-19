@@ -290,9 +290,9 @@ const options: Option[] = [
   
   const onSubmit = async () => {
     if (isEditing.value) {
-      await store.updateSchedule(schedule.value);
+      await store.updateSchedule();
     } else {
-      await store.createSchedule(schedule.value);
+      await store.createSchedule();
     }
     router.push('/schedules');
   };
