@@ -20,7 +20,7 @@ export const useScheduleStore = defineStore('schedule', {
       opponentConference: '',
       opponentDivision: '',
       winLostFlag: '',
-      homeOrAway: '',
+      homeOrAway: { label: '', value: '' },
     },
   }),
   actions: {

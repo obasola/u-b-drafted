@@ -121,7 +121,10 @@
               </thead>
             </td>
             <td>
-              <Dropdown v-model="schedule.winLostFlag" :options="wlOptions" optionLabel="label" />
+              <Dropdown 
+              v-model="schedule.winLostFlag" 
+              :options="wlOptions" 
+              optionLabel="label" />
             </td>
           </tr>
           <tr>
@@ -198,8 +201,8 @@
 
 
 const options: Option[] = [
-    { label: 'Home', value: 'home' },
-    { label: 'Away', value: 'away' },
+    { label: 'Home', value: 'H' },
+    { label: 'Away', value: 'A' },
   ];
   const wlOptions: Option[] = [
     { label: '', value: 'Choose' },
@@ -220,11 +223,11 @@ const options: Option[] = [
     opponentConference: '',
     opponentDivision: '',
     winLostFlag: '',
-    homeOrAway: '',
+    homeOrAway: { label: '', value: '' },
   });
   
   const isEditing = ref(false);
-  
+  let homeAwayFlag = '';
 
   // Define reactive variables
     const selectedCity = ref<NFLTeam | null>(null);
@@ -249,22 +252,24 @@ const options: Option[] = [
     const onOpposingTeamChange = (e: any) => {      
       teamStore.OpposingTeam = e.value;
 
-      schedule.value.gameLocation = teamStore.OpposingTeam.stadium;      schedule.value.opponentConference = opposingTeamSelected.value.conference;
+     // schedule.value.gameLocation = teamStore.OpposingTeam.stadium;      schedule.value.opponentConference = opposingTeamSelected.value.conference;
       schedule.value.opponentDivision = teamStore.OpposingTeam.division;
       schedule.value.opponentConference = teamStore.OpposingTeam.conference;
     };
 
     const onHomeAwayFlagChange = (e: any) => {
-      const haFlag: any = e.value;
-
-      if(haFlag === 'away') {
+      if(schedule.value.homeOrAway.label === 'Away') {
         schedule.value.gameLocation = teamStore.OpposingTeam.stadium;
-        alert("Stadium chgd to " + teamStore.OpposingTeam.stadium);
-        alert("Opposing team: "+ teamStore.OpposingTeam.name);
-      }else{
+        schedule.value.gameStateProvince = teamStore.OpposingTeam.state;
+        schedule.value.opponentConference = teamStore.OpposingTeam.conference;
+        schedule.value.opponentDivision = teamStore.OpposingTeam.division;
+      }else if(schedule.value.homeOrAway.label === 'Home') {
         schedule.value.gameLocation = teamStore.homeTeam.stadium;
-        alert("Stadium chgd to " + teamStore.homeTeam.stadium);
-        alert("Home team: " + teamStore.homeTeam.name);
+        schedule.value.gameStateProvince = teamStore.homeTeam.state;
+        schedule.value.opponentConference = teamStore.homeTeam.conference;
+        schedule.value.opponentDivision = teamStore.homeTeam.division;
+      }else{
+        alert("No match found for dropdown selection");
       }
       
     }
