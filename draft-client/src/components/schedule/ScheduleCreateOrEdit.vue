@@ -25,7 +25,7 @@
               </thead>
             </td>
             <td>
-              <InputText readonly id="teamName" v-model="teamStore.homeTeam.name"/>
+              <InputText readonly id="teamName" v-model="domainData.teamName"/>
             </td>
           </tr>
           <tr>
@@ -170,7 +170,7 @@ import ScheduleData from '@/domain/ScheduleData';
   const service = new CityService();
 
   const cityOptions = ref<{ city: string, state: string }[]>([]);
-  const domainData = new ScheduleData();
+  const domainData = reactive(new ScheduleData());
   
 
   const opposingTeamOptions = ref<{name: string, conference: string, division: string}[]>([]);
@@ -231,13 +231,15 @@ const options: Option[] = [
       conference: team.conference, division: team.division, stadium: team.stadium }));
     }
 
-    // Handle city dropdown change
+    /************************************************************
+    *  Handle city dropdown change
+    * When city selection changes set / reset Team Name column
+    *************************************************************/
     const onCityChange = (e: any) => {      
       teamStore.homeTeam = e.value;
       domainData.gameStateProvince = teamStore.homeTeam.state;
-      store.schedule.gameStateProvince = teamStore.homeTeam.state;
       domainData.teamName = teamStore.homeTeam.name;
-     
+      store.schedule.gameStateProvince = teamStore.homeTeam.state;     
     };
 
     // Handle Team dropdown change
@@ -248,21 +250,15 @@ const options: Option[] = [
       domainData.opponentDivision = teamStore.OpposingTeam.division;
       domainData.opponentConference = teamStore.OpposingTeam.conference;
     };
-    domainData.homeOrAway = homeOrAway.value.label;
+    //domainData.homeOrAway = homeOrAway.value.label;
 
     const onHomeAwayFlagChange = (e: any) => {
       domainData.homeOrAway = homeOrAway.value.label;
       
       if(homeOrAway.value.label === 'Away') {
         domainData.gameLocation = teamStore.OpposingTeam.stadium;
-        domainData.gameStateProvince = teamStore.OpposingTeam.state;
-        domainData.opponentConference = teamStore.OpposingTeam.conference;
-        domainData.opponentDivision = teamStore.OpposingTeam.division;
       }else if(homeOrAway.value.label === 'Home') {
         domainData.gameLocation = teamStore.homeTeam.stadium;
-        domainData.gameStateProvince = teamStore.homeTeam.state;
-        domainData.opponentConference = teamStore.homeTeam.conference;
-        domainData.opponentDivision = teamStore.homeTeam.division;
       }else{
         alert("No match found for dropdown selection");
       }

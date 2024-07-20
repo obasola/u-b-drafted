@@ -23,7 +23,7 @@
 
 <script setup lang="ts">
 import { defineProps, defineEmits } from 'vue';
-import PlayerAward from '@/domain/interfaces/domainInterfaces';
+import PlayerAward from '@/domain/interfaces/PlayerAward';
 import axios from '@/utils/axios';
 import { ref } from 'vue';
 

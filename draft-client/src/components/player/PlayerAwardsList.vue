@@ -8,6 +8,7 @@
             {{ slotProps.data.Player.firstName }} {{ slotProps.data.Player.lastName }}
           </template>
         </Column>
+        <Column field="award_name" header="Award" />
         <Column field="year_awarded" header="Year Awarded" />
       </DataTable>
       <Dialog v-model:visible="isDialogVisible" :modal="true" :closable="false">
@@ -19,7 +20,7 @@
   <script setup lang="ts">
   import { ref, onMounted, computed } from 'vue';
   import { usePlayerAwardsStore } from './store/playerAwardStore';
-import Player from '@/domain/interfaces/domainInterfaces';
+import Player from '@/domain/interfaces/Player';
 
   const playerAwardsStore = usePlayerAwardsStore();
   const isDialogVisible = ref(false);
