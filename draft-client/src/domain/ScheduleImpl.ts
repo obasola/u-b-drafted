@@ -23,7 +23,7 @@ export default class ScheduleImpl {
         winLostFlag: '',
         homeOrAway: '',
     }
-    //data = new ScheduleData{0,'',0,new Date(),'','','USA','','','','','',''};
+    
     data = <ScheduleData>{
         id: 0 ,
         teamName: '' ,
@@ -39,21 +39,21 @@ export default class ScheduleImpl {
         wonLostFlag: '' ,
         homeOrAway:  '' ,
     };
-        constructor(data: ScheduleData)  {
+        constructor(domainData: ScheduleData)  {
         
-        this.data.id = data.id;
-        this.data.teamName = data.teamName;
-        this.data.scheduleWeek = data.scheduleWeek;
-        this.data.gameDate = data.gameDate;
-        this.data.gameCity = data.gameCity;
-        this.data.gameCountry = data.gameCountry
-        this.data.gameStateProvince = data.gameStateProvince
-        this.data.gameLocation = data.gameLocation;
-        this.data.opponentName = data.opponentName;
-        this.data.opponentConference = data.opponentConference;
-        this.data.opponentDivision = data.opponentDivision;
-        this.data.wonLostFlag = data.wonLostFlag;
-        this.data.homeOrAway = data.homeOrAway;
+        this.data.id = domainData.id;
+        this.data.teamName = domainData.teamName;
+        this.data.scheduleWeek = domainData.scheduleWeek;
+        this.data.gameDate = domainData.gameDate;
+        this.data.gameCity = domainData.gameCity;
+        this.data.gameCountry = domainData.gameCountry
+        this.data.gameStateProvince = domainData.gameStateProvince
+        this.data.gameLocation = domainData.gameLocation;
+        this.data.opponentName = domainData.opponentName;
+        this.data.opponentConference = domainData.opponentConference;
+        this.data.opponentDivision = domainData.opponentDivision;
+        this.data.wonLostFlag = domainData.wonLostFlag;
+        this.data.homeOrAway = domainData.homeOrAway;
     }
     
     mapDomain2EntityObject() : Schedule {

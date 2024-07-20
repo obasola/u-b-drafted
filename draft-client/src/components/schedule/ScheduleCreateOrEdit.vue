@@ -10,7 +10,7 @@
             </td>
             <td>
               <Dropdown 
-                v-model="schedule.gameCity" 
+                v-model="domainData.gameCity" 
                 :options="cityOptions" 
                 optionLabel="city" 
                 placeholder="Select a City"
@@ -36,7 +36,7 @@
             </td>
             <td>
               <Dropdown 
-                v-model="schedule.opponentName" 
+                v-model="domainData.opponentName" 
                 :options="opposingTeamOptions" 
                 optionLabel="name" 
                 placeholder="Select a Team"
@@ -51,7 +51,7 @@
               </thead>
             </td>
             <td>
-              <InputText id="week" v-model="schedule.scheduleWeek"  />
+              <InputText id="week" v-model="domainData.scheduleWeek"  />
             </td>
           </tr>
           <tr>
@@ -61,7 +61,7 @@
               </thead>
             </td>
             <td>
-              <Calendar id="gameDate" v-model="schedule.gameDate"/>
+              <Calendar id="gameDate" v-model="domainData.gameDate"/>
             </td>
           </tr>          
           <tr>
@@ -71,7 +71,7 @@
               </thead>
             </td>
             <td>
-              <InputText readonly id="StateOrProvence" v-model="schedule.gameStateProvince"  />
+              <InputText readonly id="StateOrProvence" v-model="domainData.gameStateProvince"  />
             </td>
           </tr>
           <tr>
@@ -81,7 +81,7 @@
               </thead>
             </td>
             <td>
-              <InputText id="gameCountry" v-model="schedule.gameCountry" placeholder="Country" />
+              <InputText id="gameCountry" v-model="domainData.gameCountry" placeholder="Country" />
             </td>
           </tr>
           <tr>
@@ -91,7 +91,7 @@
               </thead>
             </td>
             <td>
-              <InputText id="location" v-model="schedule.gameLocation"/>
+              <InputText id="location" v-model="domainData.gameLocation"/>
             </td>
           </tr>
           <tr>
@@ -101,7 +101,7 @@
               </thead>
             </td>
             <td>
-              <InputText id="oppConference" v-model="schedule.opponentConference"/>
+              <InputText id="oppConference" v-model="domainData.opponentConference"/>
             </td>
           </tr>
           <tr>
@@ -111,7 +111,7 @@
               </thead>
             </td>
             <td>
-              <InputText id="oppDivision" v-model="schedule.opponentDivision"/>
+              <InputText id="oppDivision" v-model="domainData.opponentDivision"/>
             </td>
           </tr>
           <tr>
@@ -122,7 +122,7 @@
             </td>
             <td>
               <Dropdown 
-              v-model="schedule.winLostFlag" 
+              v-model="domainData.wonLostFlag" 
               :options="wlOptions" 
               optionLabel="label" />
             </td>
@@ -135,7 +135,7 @@
             </td>
             <td>
               <Dropdown 
-                v-model="schedule.homeOrAway" 
+                v-model="homeOrAway" 
                 :options="options" 
                 optionLabel="label"
                 @change="onHomeAwayFlagChange"
@@ -158,9 +158,10 @@
   import { useScheduleStore } from './store/scheduleStore';
   import { useTeamStore } from '../team/store/teamStore';
   import { CityService } from '../misc/CityService';
-  import { Schedule } from '@/api/schedule';
+  import ScheduleImpl from '@/domain/ScheduleImpl';
   import NFLTeam from '../misc/TeamStadium';
   import Team from '@/domain/interfaces/Team';
+import ScheduleData from '@/domain/ScheduleData';
   
   const store = useScheduleStore();
   const teamStore = useTeamStore();
@@ -169,7 +170,9 @@
   const service = new CityService();
 
   const cityOptions = ref<{ city: string, state: string }[]>([]);
+  const domainData = new ScheduleData();
   
+
   const opposingTeamOptions = ref<{name: string, conference: string, division: string}[]>([]);
   const homeTeams = ref(service.getCities() );
   const opposingTeams = ref(service.getCities() );
@@ -210,21 +213,9 @@ const options: Option[] = [
     { label: 'Won', value: 'W' },
   ];
 
-  const schedule = ref({
-    id: 0,
-    teamName: '',
-    scheduleWeek: 0,
-    gameDate: new Date(),
-    gameCity: '',
-    gameStateProvince: '',
-    gameCountry: 'USA',
-    gameLocation: '',
-    opponentName: '',
-    opponentConference: '',
-    opponentDivision: '',
-    winLostFlag: '',
-    homeOrAway: { label: '', value: '' },
-  });
+  const homeOrAway = ref(
+     { label: '', value: '' },
+  );
   
   const isEditing = ref(false);
   let homeAwayFlag = '';
@@ -243,9 +234,10 @@ const options: Option[] = [
     // Handle city dropdown change
     const onCityChange = (e: any) => {      
       teamStore.homeTeam = e.value;
-      schedule.value.gameStateProvince = teamStore.homeTeam.state;
+      domainData.gameStateProvince = teamStore.homeTeam.state;
       store.schedule.gameStateProvince = teamStore.homeTeam.state;
-      schedule.value.teamName = teamStore.homeTeam.name;
+      domainData.teamName = teamStore.homeTeam.name;
+     
     };
 
     // Handle Team dropdown change
@@ -253,21 +245,24 @@ const options: Option[] = [
       teamStore.OpposingTeam = e.value;
 
      // schedule.value.gameLocation = teamStore.OpposingTeam.stadium;      schedule.value.opponentConference = opposingTeamSelected.value.conference;
-      schedule.value.opponentDivision = teamStore.OpposingTeam.division;
-      schedule.value.opponentConference = teamStore.OpposingTeam.conference;
+      domainData.opponentDivision = teamStore.OpposingTeam.division;
+      domainData.opponentConference = teamStore.OpposingTeam.conference;
     };
+    domainData.homeOrAway = homeOrAway.value.label;
 
     const onHomeAwayFlagChange = (e: any) => {
-      if(schedule.value.homeOrAway.label === 'Away') {
-        schedule.value.gameLocation = teamStore.OpposingTeam.stadium;
-        schedule.value.gameStateProvince = teamStore.OpposingTeam.state;
-        schedule.value.opponentConference = teamStore.OpposingTeam.conference;
-        schedule.value.opponentDivision = teamStore.OpposingTeam.division;
-      }else if(schedule.value.homeOrAway.label === 'Home') {
-        schedule.value.gameLocation = teamStore.homeTeam.stadium;
-        schedule.value.gameStateProvince = teamStore.homeTeam.state;
-        schedule.value.opponentConference = teamStore.homeTeam.conference;
-        schedule.value.opponentDivision = teamStore.homeTeam.division;
+      domainData.homeOrAway = homeOrAway.value.label;
+      
+      if(homeOrAway.value.label === 'Away') {
+        domainData.gameLocation = teamStore.OpposingTeam.stadium;
+        domainData.gameStateProvince = teamStore.OpposingTeam.state;
+        domainData.opponentConference = teamStore.OpposingTeam.conference;
+        domainData.opponentDivision = teamStore.OpposingTeam.division;
+      }else if(homeOrAway.value.label === 'Home') {
+        domainData.gameLocation = teamStore.homeTeam.stadium;
+        domainData.gameStateProvince = teamStore.homeTeam.state;
+        domainData.opponentConference = teamStore.homeTeam.conference;
+        domainData.opponentDivision = teamStore.homeTeam.division;
       }else{
         alert("No match found for dropdown selection");
       }
@@ -290,9 +285,9 @@ const options: Option[] = [
   
   const onSubmit = async () => {
     if (isEditing.value) {
-      await store.updateSchedule();
+      await store.updateSchedule(domainData);
     } else {
-      await store.createSchedule();
+      await store.createSchedule(domainData);
     }
     router.push('/schedules');
   };

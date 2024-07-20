@@ -1,20 +1,6 @@
 // src/api/schedule.ts
+import Schedule from '@/domain/interfaces/Schedule';
 
-export interface Schedule {
-    id: number;
-    teamName: string;
-    opponentName: string;
-    scheduleWeek: number;
-    gameDate: Date;
-    gameCity: string;
-    gameStateProvince: string;
-    gameCountry: string;
-    gameLocation: string;
-    opponentConference: string;
-    opponentDivision: string;
-    winLostFlag: string;
-    homeOrAway: string;
-  }
   
   import axios from 'axios';
   
@@ -30,16 +16,16 @@ export interface Schedule {
       return apiClient.get('/schedules');
     },
     getSchedule(id: number) {
-      return apiClient.get(`/schedules/${id}`);
+      return apiClient.get(`/schedule/${id}`);
     },
     createSchedule(schedule: Schedule) {
-      return apiClient.post('/schedules', schedule);
+      return apiClient.post('/schedule', schedule);
     },
     updateSchedule(schedule: Schedule) {
-      return apiClient.put(`/schedules/${schedule.id}`, schedule);
+      return apiClient.put(`/schedule/${schedule.id}`, schedule);
     },
     deleteSchedule(id: number) {
-      return apiClient.delete(`/schedules/${id}`);
+      return apiClient.delete(`/schedule/${id}`);
     },
   };
   

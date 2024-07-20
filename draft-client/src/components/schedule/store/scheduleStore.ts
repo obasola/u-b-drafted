@@ -1,10 +1,13 @@
 // src/components/schedule/store/scheduleStore.ts
 
 import { defineStore } from 'pinia';
-import { Schedule } from '@/api/schedule';
+import Schedule from '@/domain/interfaces/Schedule';
 import scheduleApi from '@/api/schedule';
+import ScheduleData from '@/domain/ScheduleData';
+import ScheduleImpl from '@/domain/ScheduleImpl';
 
-export const useScheduleStore = defineStore('schedule', {
+export const useScheduleStore = defineStore('schedule', {  
+
   state: () => ({
     schedules: [] as Schedule[],
     schedule: {
@@ -32,13 +35,16 @@ export const useScheduleStore = defineStore('schedule', {
       const response = await scheduleApi.getSchedule(id);
       this.schedule = response.data;
     },
-    async createSchedule(schedule: Schedule) {
-      await scheduleApi.createSchedule(schedule);
+    async createSchedule(schedule: ScheduleData) {
+      let scheduleImpl = new ScheduleImpl(schedule);
+      let data =scheduleImpl.mapDomain2EntityObject();
+      await scheduleApi.createSchedule(data);
       this.fetchSchedules();
     },
-    async updateSchedule(schedule: Schedule) {
-      await scheduleApi.updateSchedule(schedule);
-      this.fetchSchedules();
+    async updateSchedule(schedule: ScheduleData) {
+      let scheduleImpl = new ScheduleImpl(schedule);
+      let data =scheduleImpl.mapDomain2EntityObject();
+      await scheduleApi.updateSchedule(data);
     },
     async deleteSchedule(id: number) {
       await scheduleApi.deleteSchedule(id);
